@@ -1,5 +1,8 @@
 {
     "name": "Issue Triage Workflow",
     "description": "Automatically add newly opened issues to the organization's Triage project",
-    "iconName": "bug"
+    "iconName": "bug",
+    "filePatterns": [
+        ".*\\.md$"
+    ]
 }
