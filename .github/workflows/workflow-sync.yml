@@ -8,8 +8,56 @@ on:
 env:
   DRY_RUN: false
   REPOSITORIES: |
+    gocodebox/lifterlms
+    gocodebox/lifterlms-advanced-quizzes
+    gocodebox/lifterlms-advanced-videos
+    gocodebox/lifterlms-assignments
+    gocodebox/lifterlms-blocks
+    gocodebox/lifterlms-convertkit
+    gocodebox/lifterlms-cli
+    gocodebox/lifterlms-custom-fields
+    gocodebox/lifterlms-gateway-authorize-net
+    gocodebox/lifterlms-gateway-paypal
+    gocodebox/lifterlms-groups
+    gocodebox/lifterlms-helper
+    gocodebox/lifterlms-integration-formidable-forms
+    gocodebox/lifterlms-integration-gravity-forms
+    gocodebox/lifterlms-integration-ninja-forms
+    gocodebox/lifterlms-integration-twilio
+    gocodebox/lifterlms-integration-woocommerce
+    gocodebox/lifterlms-integration-wpforms
+    gocodebox/lifterlms-labs
+    gocodebox/lifterlms-lite-lms-progress-tracker
+    gocodebox/lifterlms-mailchimp
+    gocodebox/lifterlms-pdfs
+    gocodebox/lifterlms-private-areas
+    gocodebox/lifterlms-rest
+    gocodebox/lifterlms-social-learning
+    gocodebox/lifterlms-stripe
+    gocodebox/lifterlms-virtual-classrooms
+    gocodebox/lifterlms-launchpad
+    gocodebox/lifterlms-launchpad-child
+    gocodebox/sky-pilot
+    gocodebox/lifterlms-zapier
+    gocodebox/lifterlms-api-node
     gocodebox/private-issues
-  
+    gocodebox/snippets
+    gocodebox/dev-tools
+    gocodebox/lifterlms-brand
+    gocodebox/lifterlms-lib-tasks
+    gocodebox/lifterlms-cs
+    gocodebox/lifterlms-tests
+    gocodebox/llms-releaser
+    gocodebox/lifterlms.com
+    gocodebox/myliftersite.com
+    gocodebox/developer.lifterlms.com
+    gocodebox/telemetry.lifterlms.com
+    gocodebox/llms-academy-rest
+    gocodebox/lifterlms-com-reporting
+    gocodebox/lifterlms-com-experiments
+    gocodebox/lifterlms.com-rest-api
+    gocodebox/lifterlms-com-support-desk
+
   WORKFLOW_FILES: |
     .github/workflows/issue-triage.yml
 
