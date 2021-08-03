@@ -1,5 +1,5 @@
 name: 'Organization Team Settings'
-description: 'Manages team repository permissions'
+description: 'Manages teams, team members, and team repository access'
 inputs:
   repo-token:
     description: 'A GitHub access token secret - must have the admin:org scope'

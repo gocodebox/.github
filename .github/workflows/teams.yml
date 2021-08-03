@@ -3,11 +3,13 @@ name: Team Repositories
 on:
   workflow_dispatch:
   push:
+    paths:
+      - teams.yml
     branches:
       - trunk
   schedule:
-    # Every 12 hours.
-    - cron: '0 */12 * * *'
+    # Every 24 hours.
+    - cron: '0 */24 * * *'
 
 jobs:
   main:
@@ -15,7 +17,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Add repos
+      - name: Update teams
         uses: ./.github/actions/teams
         with:
           repo-token: ${{ secrets.ORG_WORKFLOWS }}

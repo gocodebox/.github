@@ -68,10 +68,10 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 	} );
 
 	// Add members.
-	console.log( '| -- Adding team members' );
+	console.log( '| Adding team members' );
 	for ( let i = 0; i < members.length; i++ ) {
 		
-		console.log( `| ---- ${ members[ i ] }` );
+		console.log( `| -- ${ members[ i ] }` );
 		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/memberships/{username}', {
 			org,
 			team_slug,
@@ -82,9 +82,9 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 	}
 
 	// Add Repos.
-	console.log( '| -- Adding repos' );
+	console.log( '| Adding repos' );
 	for ( let i = 0; i < repos.length; i++ ) {
-		console.log( `| ---- ${ repos[ i ].name }` );
+		console.log( `| -- ${ repos[ i ].name }` );
 		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
 			org,
 			team_slug,
