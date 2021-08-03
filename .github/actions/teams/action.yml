@@ -5,4 +5,4 @@ inputs:
     description: 'A GitHub access token secret - must have the admin:org scope'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
