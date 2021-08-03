@@ -6,8 +6,8 @@ const
 
 const updateTeams = async ( org, teams ) => {
 
-	for ( var key in Object.keys( teams ) ) {
-		await updateTeam( org, key, teams[ key ] );
+	for ( let slug in teams ) {
+		await updateTeam( org, slug, teams[ slug ] );
 	}
 
 };
