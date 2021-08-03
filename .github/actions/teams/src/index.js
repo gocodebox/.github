@@ -52,7 +52,7 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 			team_slug,
 			permission,
 			owner: org,
-			repo: repo[ i ].name,
+			repo: repos[ i ].name,
 		} );
 	}
 
