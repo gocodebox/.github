@@ -6297,7 +6297,9 @@ const main = async () => {
 
 	const repos = await octokit.paginate('GET /orgs/{org}/repos', {
 		org,
-	} );
+	} )
+		.filter( ( { archived } ) => false === archived )
+		.filter( ( { disabled } ) => false === disabled );
 
 	console.log( repos );
 
