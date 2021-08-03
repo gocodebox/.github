@@ -10460,8 +10460,6 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 		parent_team_id,
 	} );
 
-	console.log( teamRes );
-
 	// Add members.
 	console.log( '| -- Adding team members' );
 	for ( let i = 0; i < members.length; i++ ) {
@@ -10490,7 +10488,7 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 	}
 
 	// Update child teams.
-	await updateTeams( teams, teamRes.id );
+	await updateTeams( teams, teamRes.data.id );
 
 
 };
