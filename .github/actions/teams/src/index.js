@@ -8,7 +8,7 @@ const main = async () => {
 		token = core.getInput( 'repo-token' ),
 		octokit = github.getOctokit( token ),
 		{ context } = github,
-		{ login: org } = context.organization;
+		{ login: org } = context.payload.organization;
 
 	console.log( org, context.payload.organization );
 
