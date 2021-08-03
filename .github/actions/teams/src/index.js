@@ -1,6 +1,8 @@
 const 
 	core = require( '@actions/core' ),
-	github = require( '@actions/github' );
+	github = require( '@actions/github' ),
+	YAML = require('yamljs');
+
 
 const main = async () => {
 
@@ -17,7 +19,11 @@ const main = async () => {
 	repos = repos
 		.filter( ( { archived, disabled, fork } ) => false === archived && false === disabled && false === fork );
 
-	console.log( repos.map( ( { name } ) => name ) );
+	const teamsConfig = YAML.parse( `${ process.env.GITHUB_WORKSPACE }/teams.yml` );
+
+	// console.log( repos.map( ( { name } ) => name ) );
+
+	console.log( teamsConfig );
 
 
 	// const teams = await octokit.request('GET /orgs/{org}/teams', {
