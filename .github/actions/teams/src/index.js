@@ -23,7 +23,7 @@ const updateTeams = async ( teams ) => {
 
 };
 
-const updateTeam = async ( team_slug, { name, description, permissions, members = [], teams = {} } ) => {
+const updateTeam = async ( team_slug, { name, description, permission, members = [], teams = {} } ) => {
 
 	// Update team info.
 	await octokit.request( 'PATCH /orgs/{org}/teams/{team_slug}', {
@@ -43,6 +43,17 @@ const updateTeam = async ( team_slug, { name, description, permissions, members 
 			role: 'member',
 		} );
 
+	}
+
+	// Add Repos.
+	for ( let i = 0; i < repos.length; i++ ) {
+		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
+			org,
+			team_slug,
+			permission,
+			owner: org,
+			repo: repo[ i ].name,
+		} );
 	}
 
 	// Update child teams.
