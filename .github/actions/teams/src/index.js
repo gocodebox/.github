@@ -15,8 +15,7 @@ const main = async () => {
 	} );
 
 	repos = repos
-		.filter( ( { archived } ) => false === archived )
-		.filter( ( { disabled } ) => false === disabled );
+		.filter( ( { archived, disabled, fork } ) => false === archived && false === disabled && false === fork );
 
 	console.log( repos.map( ( { name } ) => name ) );
 
