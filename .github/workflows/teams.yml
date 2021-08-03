@@ -1,0 +1,15 @@
+name: Team Repositories
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every 12 hours.
+    - cron: '0 */12 * * *'
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/teams
+        with:
+          repo-token: ${{ secrets.ORG_WORKFLOWS }}
