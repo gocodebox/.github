@@ -1,0 +1,34 @@
+main:
+  name: Main
+  description: 'Team LifterLMS'
+  permission: pull
+  members:
+    - chrisbadgett
+    - eri-trabiccolo
+    - nrherron92
+    - thomasplevy
+    - toyinogunseinde
+    - willmiddleton-lifterlms
+  teams:
+    success:
+      name: Success
+      description: 'The LifterLMS Customer success and support team'
+      permission: pull
+      members:
+        - nrherron92
+        - toyinogunseinde
+        - willmiddleton-lifterlms
+    engineering:
+      name: Engineering
+      description: 'The LifterLMS development team'
+      permission: push
+      members:
+        - eri-trabiccolo
+        - thomasplevy
+    admin:
+      name: Admin
+      description: 'The codeBOX company administrators'
+      permission: admin
+      members:
+        - chrisbadgett
+        - thomasplevy
