@@ -1,12 +1,13 @@
 const 
 	core = require( '@actions/core' ),
-	{ GitHub, context } = require( '@actions/github' );
+	github = require( '@actions/github' );
 
 const main = async () => {
 
   const 
   	token = core.getInput( 'repo-token' ),
-  	octokit = new GitHub( token );
+  	octokit = github.getOctokit( token ),
+    { context } = github;
 
   console.log( context );
 
