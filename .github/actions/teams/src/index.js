@@ -2,7 +2,7 @@ const
 	core = require( '@actions/core' ),
 	github = require( '@actions/github' ),
 	{ readFileSync } = require( 'fs' ),
-	yaml = require('yamljs');
+	yaml = require( 'js-yaml' );
 
 
 const main = async () => {
