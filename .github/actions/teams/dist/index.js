@@ -6295,13 +6295,18 @@ const main = async () => {
 		{ context } = github,
 		{ login: org } = context.payload.organization;
 
-	console.log( org, context.payload.organization );
-
-	const teams = await octokit.request('GET /orgs/{org}/teams', {
-		org
+	const repos = await octokit.paginate('GET /orgs/{org}/repos', {
+		org,
 	} );
 
-	console.log( teams );
+	console.log( repos );
+
+
+	// const teams = await octokit.request('GET /orgs/{org}/teams', {
+	// 	org
+	// } );
+
+	// console.log( teams );
 
 }
 
