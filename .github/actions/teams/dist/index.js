@@ -6289,14 +6289,16 @@ const
 
 const main = async () => {
 
-  const 
-  	token = core.getInput( 'repo-token' ),
-  	octokit = github.getOctokit( token ),
-    { context } = github;
+	const 
+		token = core.getInput( 'repo-token' ),
+		octokit = github.getOctokit( token ),
+		{ context } = github;
 
-  console.log( context );
+	const teams = await octokit.request('GET /orgs/{org}/teams', {
+		org: 'org'
+	} );
 
-  // await octokit.
+	console.log( teams );
 
 }
 
