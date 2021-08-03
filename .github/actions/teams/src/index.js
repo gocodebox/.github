@@ -10,9 +10,11 @@ const main = async () => {
 		{ context } = github,
 		{ login: org } = context.payload.organization;
 
-	const repos = await octokit.paginate('GET /orgs/{org}/repos', {
+	let repos = await octokit.paginate('GET /orgs/{org}/repos', {
 		org,
-	} )
+	} );
+
+	repos = repos
 		.filter( ( { archived } ) => false === archived )
 		.filter( ( { disabled } ) => false === disabled );
 
