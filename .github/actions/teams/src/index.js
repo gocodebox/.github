@@ -5,9 +5,17 @@ const
 	{ readFileSync } = require( 'fs' ),
 	yaml = require( 'js-yaml' );
 
+const logInfo = ( string ) => {
+
+	const spacer = depth > 0 ? ' '.repeat( depth * 4 ) : '';
+	logInfo( spacer + string );
+
+};
+
 
 // Setup global vars.
-let repos = [];
+let repos = [],
+	depth = 0;
 const 
 	token = core.getInput( 'repo-token' ),
 	octokit = github.getOctokit( token ),
@@ -53,7 +61,7 @@ const updateTeams = async ( teams, parent_team_id = null ) => {
  */
 const updateTeam = async ( team_slug, { name, description, permission, members = [], teams = {} }, parent_team_id = null ) => {
 
-	console.log( `Updating team: ${ team_slug}` );
+	logInfo( `Updating team: ${ team_slug}` );
 
 	// Update team info.
 	const teamRes = await octokit.request( 'PATCH /orgs/{org}/teams/{team_slug}', {
@@ -64,10 +72,14 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 		parent_team_id,
 	} );
 
+	console.log( teamRes );
+
+	return;
+
 	// Add members.
 	for ( let i = 0; i < members.length; i++ ) {
 		
-		console.log( `Adding member: ${ members[ i ] }` );
+		logInfo( `Adding member: ${ members[ i ] }` );
 		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/memberships/{username}', {
 			org,
 			team_slug,
@@ -79,7 +91,7 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 
 	// Add Repos.
 	for ( let i = 0; i < repos.length; i++ ) {
-		console.log( `Adding repo: ${ repos[ i ].name }` );
+		logInfo( `Adding repo: ${ repos[ i ].name }` );
 		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
 			org,
 			team_slug,
@@ -88,6 +100,8 @@ const updateTeam = async ( team_slug, { name, description, permission, members =
 			repo: repos[ i ].name,
 		} );
 	}
+
+	depth++;
 
 	// Update child teams.
 	await updateTeams( teams, teamRes.id );
