@@ -2,6 +2,9 @@ name: Team Repositories
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - trunk
   schedule:
     # Every 12 hours.
     - cron: '0 */12 * * *'
