@@ -10391,16 +10391,25 @@ module.exports = require("zlib");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+// Require modules.
 const 
 	core = __nccwpck_require__( 2186 ),
 	github = __nccwpck_require__( 5438 ),
 	{ readFileSync } = __nccwpck_require__( 5747 ),
 	yaml = __nccwpck_require__( 1917 );
 
-const updateTeams = async ( org, teams ) => {
+// Setup global vars.
+const 
+	token = core.getInput( 'repo-token' ),
+	octokit = github.getOctokit( token ),
+	{ context } = github,
+	{ login: org } = context.payload.organization;
+
+
+const updateTeams = async ( teams ) => {
 
 	for ( let slug in teams ) {
-		await updateTeam( org, slug, teams[ slug ] );
+		await updateTeam( slug, teams[ slug ] );
 	}
 
 };
@@ -10418,12 +10427,6 @@ const updateTeam = async ( org, team_slug, { name, description, permissions, mem
 
 const main = async () => {
 
-	const 
-		token = core.getInput( 'repo-token' ),
-		octokit = github.getOctokit( token ),
-		{ context } = github,
-		{ login: org } = context.payload.organization;
-
 	let repos = await octokit.paginate('GET /orgs/{org}/repos', {
 		org,
 	} );
@@ -10433,7 +10436,7 @@ const main = async () => {
 
 	const teamsConfig = yaml.load( readFileSync( `${ process.env.GITHUB_WORKSPACE }/teams.yml`, 'utf8' ) );
 
-	await updateTeams( org, teamsConfig );
+	await updateTeams( teamsConfig );
 
 	// console.log( repos.map( ( { name } ) => name ) );
 
