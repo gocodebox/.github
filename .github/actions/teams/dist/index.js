@@ -10397,6 +10397,24 @@ const
 	{ readFileSync } = __nccwpck_require__( 5747 ),
 	yaml = __nccwpck_require__( 1917 );
 
+const updateTeams = async ( org, teams ) => {
+
+	for ( var key in Object.keys( teams ) ) {
+		await updateTeam( org, key, teams[ key ] );
+	}
+
+};
+
+const updateTeam = async ( org, team_slug, { name, description, permissions, members = [], teams = {} } ) => {
+
+	await octokit.request( 'PATCH /orgs/{org}/teams/{team_slug}', {
+	  org,
+	  team_slug,
+	  name,
+	  description,
+	} );	
+
+};
 
 const main = async () => {
 
@@ -10415,9 +10433,10 @@ const main = async () => {
 
 	const teamsConfig = yaml.load( readFileSync( `${ process.env.GITHUB_WORKSPACE }/teams.yml`, 'utf8' ) );
 
+	await updateTeams( org, teamsConfig );
+
 	// console.log( repos.map( ( { name } ) => name ) );
 
-	console.log( teamsConfig );
 
 
 	// const teams = await octokit.request('GET /orgs/{org}/teams', {
