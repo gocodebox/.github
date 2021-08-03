@@ -6303,7 +6303,7 @@ const main = async () => {
 		.filter( ( { archived } ) => false === archived )
 		.filter( ( { disabled } ) => false === disabled );
 
-	console.log( repos );
+	console.log( repos.map( ( { name } ) => name ) );
 
 
 	// const teams = await octokit.request('GET /orgs/{org}/teams', {
