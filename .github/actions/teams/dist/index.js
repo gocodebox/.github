@@ -10414,7 +10414,7 @@ const updateTeams = async ( teams ) => {
 
 };
 
-const updateTeam = async ( org, team_slug, { name, description, permissions, members = [], teams = {} } ) => {
+const updateTeam = async ( team_slug, { name, description, permissions, members = [], teams = {} } ) => {
 
 	await octokit.request( 'PATCH /orgs/{org}/teams/{team_slug}', {
 	  org,
