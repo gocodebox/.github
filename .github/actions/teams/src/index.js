@@ -15,8 +15,8 @@ const main = async () => {
 	} );
 
 	repos = repos
-		.filter( ( { archived } ) => false === archived )
-		.filter( ( { disabled } ) => false === disabled );
+		.filter( ( { archived } ) => archived )
+		.filter( ( { disabled } ) => disabled );
 
 	console.log( repos );
 
