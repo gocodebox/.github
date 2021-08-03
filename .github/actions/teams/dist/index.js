@@ -10398,6 +10398,8 @@ const
 	{ readFileSync } = __nccwpck_require__( 5747 ),
 	yaml = __nccwpck_require__( 1917 );
 
+let repos = [];
+
 // Setup global vars.
 const 
 	token = core.getInput( 'repo-token' ),
@@ -10416,18 +10418,35 @@ const updateTeams = async ( teams ) => {
 
 const updateTeam = async ( team_slug, { name, description, permissions, members = [], teams = {} } ) => {
 
+	// Update team info.
 	await octokit.request( 'PATCH /orgs/{org}/teams/{team_slug}', {
-	  org,
-	  team_slug,
-	  name,
-	  description,
-	} );	
+		org,
+		team_slug,
+		name,
+		description,
+	} );
+
+	// Add members.
+	for ( let i = 0; i < members.length; i++ ) {
+		
+		await octokit.request( 'PUT /orgs/{org}/teams/{team_slug}/memberships/{username}', {
+			org,
+			team_slug,
+			username: members[ i ],
+			role: 'member',
+		} );
+
+	}
+
+	// Update child teams.
+	await updateTeams( teams );
+
 
 };
 
 const main = async () => {
 
-	let repos = await octokit.paginate('GET /orgs/{org}/repos', {
+	repos = await octokit.paginate('GET /orgs/{org}/repos', {
 		org,
 	} );
 
