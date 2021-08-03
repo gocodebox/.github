@@ -10,7 +10,7 @@ const main = async () => {
 		{ context } = github,
 		{ login: org } = context.organization;
 
-	console.log( org, context.organization );
+	console.log( org, context.payload.organization );
 
 	const teams = await octokit.request('GET /orgs/{org}/teams', {
 		org
