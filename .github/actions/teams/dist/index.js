@@ -6292,10 +6292,13 @@ const main = async () => {
 	const 
 		token = core.getInput( 'repo-token' ),
 		octokit = github.getOctokit( token ),
-		{ context } = github;
+		{ context } = github,
+		{ login: org } = context.organization;
+
+	console.log( org, context.organization );
 
 	const teams = await octokit.request('GET /orgs/{org}/teams', {
-		org: 'org'
+		org
 	} );
 
 	console.log( teams );
