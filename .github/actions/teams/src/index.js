@@ -1,7 +1,8 @@
 const 
 	core = require( '@actions/core' ),
 	github = require( '@actions/github' ),
-	YAML = require('yamljs');
+	{ readFileSync } = require( 'fs' ),
+	yaml = require('yamljs');
 
 
 const main = async () => {
@@ -19,7 +20,7 @@ const main = async () => {
 	repos = repos
 		.filter( ( { archived, disabled, fork } ) => false === archived && false === disabled && false === fork );
 
-	const teamsConfig = YAML.parse( `${ process.env.GITHUB_WORKSPACE }/teams.yml` );
+	const teamsConfig = yaml.load( readFileSync( `${ process.env.GITHUB_WORKSPACE }/teams.yml`, 'utf8' ) );
 
 	// console.log( repos.map( ( { name } ) => name ) );
 
