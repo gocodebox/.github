@@ -63,6 +63,7 @@ env:
 
   WORKFLOW_FILES: |
     .github/workflows/issue-triage.yml
+    .github/workflows/pr-ready.yml
 
 jobs:
   sync-files:
