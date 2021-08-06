@@ -5,6 +5,7 @@ const
 	{ readFileSync } = require( 'fs' ),
 	yaml = require( 'js-yaml' );
 
+console.log( github.context );
 
 // Setup global vars.
 let repos = [];

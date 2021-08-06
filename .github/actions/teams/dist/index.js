@@ -10398,6 +10398,7 @@ const
 	{ readFileSync } = __nccwpck_require__( 5747 ),
 	yaml = __nccwpck_require__( 1917 );
 
+console.log( github.context );
 
 // Setup global vars.
 let repos = [];
