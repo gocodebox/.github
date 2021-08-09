@@ -5,6 +5,7 @@ main:
   members:
     - chrisbadgett
     - eri-trabiccolo
+    - pondermatic
     - nrherron92
     - thomasplevy
     - toyinogunseinde
@@ -24,6 +25,7 @@ main:
       permission: push
       members:
         - eri-trabiccolo
+        - pondermatic
         - thomasplevy
     admin:
       name: Admin
