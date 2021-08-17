@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - .github/actions/teams/**
       - .github/workflows/teams.yml
+      - .github/workflows/issue-triage.yml
     branches:
       - trunk
       
