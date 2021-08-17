@@ -10398,16 +10398,13 @@ const
 	{ readFileSync } = __nccwpck_require__( 5747 ),
 	yaml = __nccwpck_require__( 1917 );
 
-console.log( github.context );
-
 // Setup global vars.
 let repos = [];
 
 const 
-	token = core.getInput( 'repo-token' ),
+	token   = core.getInput( 'repo-token' ),
 	octokit = github.getOctokit( token ),
-	{ context } = github,
-	{ login: org } = context.payload.organization;
+	org     = 'gocodebox';
 
 /**
  * Updates a list of teams
