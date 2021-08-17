@@ -36,7 +36,7 @@ jobs:
       - name: Update PRIMARY_CODEOWNER env var
         if: steps.codeowners_file_exists.outputs.files_exists == 'true'
         run: |
-          echo "PRIMARY_CODEOWNER=${{ steps.codeowners.outputs.codeowners['*'] }}" >> $GITHUB_ENV
+          echo "PRIMARY_CODEOWNER=${{ steps.codeowner.outputs.codeowners['*'] }}" >> $GITHUB_ENV
 
       - name: Strip @ from username
         run: |
