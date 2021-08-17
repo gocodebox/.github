@@ -21,4 +21,4 @@ jobs:
       
       - name: Assign to primary codeowner
         run: |
-          echo ${{ steps.codeowners.outputs.codeowners['*'] || @thomasplevy }};
+          echo ${{ steps.codeowners.outputs.codeowners['*'] || '@thomasplevy' }};
