@@ -24,12 +24,14 @@ jobs:
         id: codeowners_file_exists
         uses: andstor/file-existence-action@v1
         with:
-          files: '.github/CODEOWNERS'
+          files: .github/CODEOWNERS
 
       - name: Parse CODEOWNERS file
         id: codeowner
         if: steps.codeowners_file_exists.outputs.files_exists == 'true'
         uses: SvanBoxel/codeowners-action@v1
+        with:
+          path: ./github/CODEOWNERS
       
       - name: Update PRIMARY_CODEOWNER env var
         if: steps.codeowners_file_exists.outputs.files_exists == 'true'
