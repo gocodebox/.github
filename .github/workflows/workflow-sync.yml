@@ -3,7 +3,7 @@ name: Sync Organization Files
 on:
   push:
     paths-ignore:
-      - .github/actions/teams/**
+      - .github/actions/**
       - .github/workflows/teams.yml
     branches:
       - trunk
