@@ -1,21 +1,19 @@
 name: 'Slack Notifier'
 description: 'Sends a notification to the specified Slack channel reporting workflow success or failure'
+
 inputs:
   channel:
     description: 'Channel to notify'
     required: true
     default: 'lifterlms-development'
-  token:
-    description: 'Slack bot token'
-    required: true
-    default: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
+
 runs:
   using: "composite"
   steps:
     - name: Notify success
       if: success()
       env:
-        SLACK_BOT_TOKEN: ${{ inputs.token }}
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
       uses: voxmedia/github-action-slack-notify-build@v1
       with:
         channel: ${{ inputs.channel }}
@@ -25,7 +23,7 @@ runs:
     - name: Notify failure
       if: failure()
       env:
-        SLACK_BOT_TOKEN: ${{ inputs.token }}
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_TOKEN }}
       uses: voxmedia/github-action-slack-notify-build@v1
       with:
         channel: ${{ inputs.channel }}
