@@ -4,7 +4,7 @@ inputs:
   channel:
     description: 'Channel to notify'
     required: true
-    default: 'developers'
+    default: 'lifterlms-development'
   token:
     description: 'Slack bot token'
     required: true
