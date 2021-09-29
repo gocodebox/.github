@@ -52,6 +52,7 @@ runs:
         echo WP_VERSION=${{ inputs.wp-version }} >> $GITHUB_ENV
         echo WP_TESTS_VERSION=${{ inputs.wp-tests-version }} >> $GITHUB_ENV
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
+        echo MYSQL_ROOT_PASSWORD=${{ inputs.db-pass }} >> $GITHUB_ENV
 
     # Setup PHP
     - name: Setup PHP
