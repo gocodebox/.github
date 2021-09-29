@@ -45,6 +45,7 @@ runs:
 
     # Environment vars used by various commands.
     - name: Add Environment Variables
+      shell: bash
       run: |
         echo TESTS_DB_NAME=${{ inputs.db-name }} >> $GITHUB_ENV
         echo TESTS_DB_USER=${{ inputs.db-user }} >> $GITHUB_ENV
@@ -62,16 +63,22 @@ runs:
 
     # Setup MySQL
     - name: Start MySQL
+      shell: bash
       run: sudo systemctl start mysql.service
     - name: Create MySQL database
+      shell: bash
       run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "CREATE DATABASE $TESTS_DB_NAME;"
     - name: Setup MySQL authentication plugin
-      if: ${{ '7.3' == inputs.php-version }}
-      run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "ALTER USER '$TESTS_DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$TESTS_DB_PASS';";
+      shell: bash
+      run: |
+        if [[ "7.3" == "${{ inputs.php-version }}" ]]; then
+          mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "ALTER USER '$TESTS_DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$TESTS_DB_PASS';";
+        fi
 
     # Composer Install.
     - name: Get composer cache directory
       id: composer-cache
+      shell: bash
       run: echo "::set-output name=dir::$(composer config cache-files-dir)"
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -80,16 +87,19 @@ runs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
         restore-keys: ${{ runner.os }}-composer-
     - name: Install Composer dependencies
+      shell: bash
       run: composer update
 
     # Special Conditions for WP 5.4
     #   + Rollback PHPUnit to ^7.5
     #   + Unset the WP_TESTS_VERSION env var so that the 5.4 *branch* (not tag) will be used.
     - name: Handle Special Conditions for WP 5.4
-      if: ${{ '5.4' == inputs.wp-version }}
+      shell: bash
       run: |
-        composer require phpunit/phpunit:^7.5.20 -W
-        echo WP_TESTS_VERSION=false >> $GITHUB_ENV
+        if [[ "5.4" == "${{ inputs.wp-version }}" ]]; then
+          composer require phpunit/phpunit:^7.5.20 -W
+          echo WP_TESTS_VERSION=false >> $GITHUB_ENV
+        fi
 
     # Install WP Tests.
     - name: Cache WP Core Files
@@ -103,6 +113,7 @@ runs:
         path: tmp/tests/wordpress-tests-lib
         key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v2
     - name: Install WP Tests
+      shell: bash
       run: composer run tests-install
 
     # Run Tests.
