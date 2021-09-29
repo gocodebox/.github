@@ -1,0 +1,118 @@
+name: 'LifterLMS PHPUnit Testing Matrix'
+description: 'Generates the matrix used by PHPUnit testing workflows for LifterLMS and LifterLMS add-ons'
+
+inputs:
+
+  # PHP (shivammathur/setup-php@v2)
+  php-version:
+    description: "PHP version, passed directly to shivammathur/setup-php@v2"
+    default: "8.0"
+  coverage:
+    description: "Coverage engine, passed directly to shivammathur/setup-php@v2"
+    default: "none" # "xdebug" to run coverage phpunit test coverage.
+
+  # MySQL
+  db-name:
+    description: "MySQL database name"
+    default: "llms_tests"
+  db-user:
+    description: "MySQL user name"
+    default: "root"
+  db-pass:
+    description: "MySQL user password"
+    default: "password"
+
+  # WordPress
+  wp-version:
+    description: "WordPress core version"
+    default: "5.8"
+  wp-tests-version:
+    description: "WordPress tests library version"
+    default: "trunk"
+
+  # Secrets
+  cc-test-reporter-id:
+    description: "CodeClimate test reporter ID"
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+
+    # Checkout.
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Environment vars used by various commands.
+    - name: Add Environment Variables
+      run: |
+        echo TESTS_DB_NAME=${{ inputs.db-name }} >> $GITHUB_ENV
+        echo TESTS_DB_USER=${{ inputs.db-user }} >> $GITHUB_ENV
+        echo TESTS_DB_PASS=${{ inputs.db-pass }} >> $GITHUB_ENV
+        echo WP_VERSION=${{ inputs.wp-version }} >> $GITHUB_ENV
+        echo WP_TESTS_VERSION=${{ inputs.wp-tests-version }} >> $GITHUB_ENV
+        echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
+
+    # Setup PHP
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ inputs.php-version }}
+        coverage: ${{ inputs.coverage }}
+
+    # Setup MySQL
+    - name: Start MySQL
+      run: sudo systemctl start mysql.service
+    - name: Create MySQL database
+      run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "CREATE DATABASE $TESTS_DB_NAME;"
+    - name: Setup MySQL authentication plugin
+      if: ${{ '7.3' == inputs.php-version }}
+      run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "ALTER USER '$TESTS_DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$TESTS_DB_PASS';";
+
+    # Composer Install.
+    - name: Get composer cache directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+        restore-keys: ${{ runner.os }}-composer-
+    - name: Install Composer dependencies
+      run: composer update
+
+    # Special Conditions for WP 5.4
+    #   + Rollback PHPUnit to ^7.5
+    #   + Unset the WP_TESTS_VERSION env var so that the 5.4 *branch* (not tag) will be used.
+    - name: Handle Special Conditions for WP 5.4
+      if: ${{ '5.4' == inputs.wp-version }}
+      run: |
+        composer require phpunit/phpunit:^7.5.20 -W
+        echo WP_TESTS_VERSION=false >> $GITHUB_ENV
+
+    # Install WP Tests.
+    - name: Cache WP Core Files
+      uses: actions/cache@v2
+      with:
+        path: tmp/tests/wordpress
+        key: wp-${{ inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v1
+    - name: Cache WP Tests Lib
+      uses: actions/cache@v2
+      with:
+        path: tmp/tests/wordpress-tests-lib
+        key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v2
+    - name: Install WP Tests
+      run: composer run tests-install
+
+    # Run Tests.
+    - name: Run Tests
+      if: ${{ 'none' == inputs.coverage }}
+      run: composer run tests
+    - name: Run Tests with Coverage & Upload Coverage Report
+      if: ${{ 'none' != inputs.coverage && inputs.cc-test-reporter-id }}
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: ${{ inputs.cc-test-reporter-id }}
+      with:
+        coverageCommand: composer run tests -- --coverage-clover clover.xml
