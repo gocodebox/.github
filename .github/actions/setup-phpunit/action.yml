@@ -30,11 +30,6 @@ inputs:
     description: "WordPress tests library version"
     default: "trunk"
 
-  # Secrets
-  cc-test-reporter-id:
-    description: "CodeClimate test reporter ID"
-    default: ""
-
 runs:
   using: "composite"
   steps:
@@ -115,15 +110,3 @@ runs:
     - name: Install WP Tests
       shell: bash
       run: composer run tests-install
-
-    # Run Tests.
-    - name: Run Tests
-      if: ${{ 'none' == inputs.coverage }}
-      run: composer run tests
-    - name: Run Tests with Coverage & Upload Coverage Report
-      if: ${{ 'none' != inputs.coverage && inputs.cc-test-reporter-id }}
-      uses: paambaati/codeclimate-action@v2.7.5
-      env:
-        CC_TEST_REPORTER_ID: ${{ inputs.cc-test-reporter-id }}
-      with:
-        coverageCommand: composer run tests -- --coverage-clover clover.xml
