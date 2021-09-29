@@ -21,6 +21,9 @@ inputs:
   db-pass:
     description: "MySQL user password"
     default: "password"
+  db-host:
+    description: "MySQL host"
+    default: "127.0.0.1"
 
   # WordPress
   wp-version:
@@ -45,6 +48,7 @@ runs:
         echo TESTS_DB_NAME=${{ inputs.db-name }} >> $GITHUB_ENV
         echo TESTS_DB_USER=${{ inputs.db-user }} >> $GITHUB_ENV
         echo TESTS_DB_PASS=${{ inputs.db-pass }} >> $GITHUB_ENV
+        echo TESTS_DB_HOST=${{ inputs.db-host }} >> $GITHUB_ENV
         echo WP_VERSION=${{ inputs.wp-version }} >> $GITHUB_ENV
         echo WP_TESTS_VERSION=${{ inputs.wp-tests-version }} >> $GITHUB_ENV
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
@@ -62,7 +66,7 @@ runs:
       run: sudo systemctl start mysql.service
     - name: Create MySQL database
       shell: bash
-      run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "CREATE DATABASE $TESTS_DB_NAME;"
+      run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS --host=$TESTS_DB_HOST -e "CREATE DATABASE $TESTS_DB_NAME;"
     - name: Setup MySQL authentication plugin
       shell: bash
       run: |
