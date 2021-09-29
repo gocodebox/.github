@@ -63,6 +63,7 @@ runs:
 
     # Setup MySQL
     - name: Setup MySql
+      uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: 'mariadb-10.6'
         root-password: ${{ inputs.db-pass }}
