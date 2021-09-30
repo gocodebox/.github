@@ -67,19 +67,9 @@ runs:
       with:
         mysql-version: 'mariadb-10.6'
         root-password: ${{ inputs.db-pass }}
-    # - name: Start MySQL
-    #   shell: bash
-    #   run: sudo systemctl start mysql.service
     - name: Create MySQL database
       shell: bash
       run: mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS --host=$TESTS_DB_HOST -e "CREATE DATABASE $TESTS_DB_NAME;"
-    # - name: Setup MySQL authentication plugin
-    #   shell: bash
-    #   run: |
-    #     if [[ "7.3" == "${{ inputs.php-version }}" ]]; then
-    #       mysql --user=$TESTS_DB_USER --password=$TESTS_DB_PASS -e "ALTER USER '$TESTS_DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$TESTS_DB_PASS';";
-    #     fi
-
 
     # Composer Install.
     - name: Get composer cache directory
