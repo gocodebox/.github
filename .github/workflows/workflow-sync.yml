@@ -15,7 +15,7 @@ env:
   DRY_RUN: true
 
   PHP_FILES: |
-    .github/workflow-templates/coding-standards.yml
+    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
   PHP_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-quizzes
