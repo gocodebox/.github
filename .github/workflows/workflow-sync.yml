@@ -90,8 +90,8 @@ jobs:
         uses: varunsridharan/action-github-workflow-sync@main
         with:
           DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.UTIL_REPOS }}
-          WORKFLOW_FILES: ${{ env.UTIL_FILES }}
+          REPOSITORIES: ${{ env.PHP_REPOS }}
+          WORKFLOW_FILES: ${{ env.PHP_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
 
   util-files:
