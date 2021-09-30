@@ -2,15 +2,26 @@ name: Sync Organization Files
 
 on:
   push:
-    paths-ignore:
-      - .github/actions/**
-      - .github/workflows/teams.yml
+    paths:
+      - .github/workflow-templates/coding-standards.yml
+      - .github/workflows/issue-triage.yml
+      - .github/workflows/pr-ready.yml
     branches:
       - trunk
-      
+
 env:
   DRY_RUN: false
-  REPOSITORIES: |
+
+  PHP_FILES: |
+    .github/workflow-templates/coding-standards.yml
+  PHP_REPOS: |
+    gocodebox/lifterlms@dev
+
+  # Utility workflows.
+  UTIL_FILES: |
+    .github/workflows/issue-triage.yml
+    .github/workflows/pr-ready.yml
+  UTIL_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-quizzes
     gocodebox/lifterlms-advanced-videos
@@ -61,20 +72,37 @@ env:
     gocodebox/lifterlms.com-rest-api
     gocodebox/lifterlms-com-support-desk
 
-  WORKFLOW_FILES: |
-    .github/workflows/issue-triage.yml
-    .github/workflows/pr-ready.yml
-
 jobs:
-  sync-files:
+
+  setup:
+    name: Setup Workflow Environment
     runs-on: ubuntu-latest
     steps:
-      - name: Fetching Local Repository
-        uses: actions/checkout@master
-      - name: Running Workflow Sync
+      - name: Checkout
+        uses: actions/checkout@v2
+
+  php-workflows:
+    name: Sync PHP Workflow Files
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Sync workflow files
         uses: varunsridharan/action-github-workflow-sync@main
         with:
           DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.REPOSITORIES }}
-          WORKFLOW_FILES: ${{ env.WORKFLOW_FILES }}
+          REPOSITORIES: ${{ env.UTIL_REPOS }}
+          WORKFLOW_FILES: ${{ env.UTIL_FILES }}
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+
+  util-files:
+    name: Sync Utility Files
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.UTIL_REPOS }}
+          WORKFLOW_FILES: ${{ env.UTIL_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
