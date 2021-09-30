@@ -6,8 +6,10 @@ on:
       - .github/workflow-templates/coding-standards.yml
       - .github/workflows/issue-triage.yml
       - .github/workflows/pr-ready.yml
+      - .github/workflows/workflow-sync.yml
     branches:
       - trunk
+    workflow_dispatch:
 
 env:
   DRY_RUN: false
