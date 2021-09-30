@@ -1,5 +1,5 @@
-name: 'LifterLMS PHPUnit Testing Matrix'
-description: 'Generates the matrix used by PHPUnit testing workflows for LifterLMS and LifterLMS add-ons'
+name: 'LifterLMS PHPUnit Testing Setup'
+description: 'Setup the PHPUnit testing environment for use in phpunit testing workflows for LifterLMS and LifterLMS add-ons'
 
 inputs:
 
