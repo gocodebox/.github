@@ -11,6 +11,9 @@ inputs:
     description: "Coverage engine, passed directly to shivammathur/setup-php@v2"
     default: "none" # "xdebug" to run coverage phpunit test coverage.
 
+  llms-branch:
+    description: "LifterLMS branch to install from git. If not supplied uses the latest version from WordPress.org."
+
   # MySQL
   db-name:
     description: "MySQL database name"
@@ -111,3 +114,10 @@ runs:
     - name: Install WP Tests
       shell: bash
       run: composer run tests-install
+
+    - name: Install LifterLMS Nightly
+      shell: bash
+      run: |
+        if [[ ! -z "${{ inputs.llms-branch }}" ]]; then
+          ./vendor/bin/llms-tests plugin https://github.com/gocodebox/lifterlms.git@${{ inputs.llms-branch }}
+        fi
