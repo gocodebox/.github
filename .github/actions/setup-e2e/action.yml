@@ -1,5 +1,5 @@
-name: 'LifterLMS PHPUnit Testing Setup'
-description: 'Setup the PHPUnit testing environment for use in phpunit testing workflows for LifterLMS and LifterLMS add-ons'
+name: 'LifterLMS E2E Testing Setup'
+description: 'Setup the E2E testing environment for use in puppeteer/jest testing workflows for LifterLMS and LifterLMS add-ons'
 
 inputs:
 
