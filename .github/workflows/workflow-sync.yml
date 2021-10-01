@@ -12,7 +12,7 @@ on:
     workflow_dispatch:
 
 env:
-  DRY_RUN: true
+  DRY_RUN: false
 
   PHP_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
@@ -80,7 +80,7 @@ env:
 jobs:
 
   php-workflows:
-    name: Sync PHP Workflow Files
+    name: PHP Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -92,9 +92,10 @@ jobs:
           REPOSITORIES: ${{ env.PHP_REPOS }}
           WORKFLOW_FILES: ${{ env.PHP_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "PHP Workflow File Sync [Runner ID: ${{ env.GITHUB_RUN_NUMBER }}]"
 
   util-files:
-    name: Sync Utility Files
+    name: Utility Files
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -106,3 +107,4 @@ jobs:
           REPOSITORIES: ${{ env.UTIL_REPOS }}
           WORKFLOW_FILES: ${{ env.UTIL_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "Utility File Sync [Runner ID: ${{ env.GITHUB_RUN_NUMBER }}]"
