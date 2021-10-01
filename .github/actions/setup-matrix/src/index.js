@@ -77,11 +77,9 @@ function loadMatrix( workflow ) {
 
 try {
 
-	console.log( process.env );
-
 	const { workflow } = context,
 		matrix = loadMatrix( workflow );
-    // console.log( matrix );
+    console.log( matrix );
     core.setOutput( 'matrix', JSON.stringify( matrix ) );
 
 } catch ( error ) {

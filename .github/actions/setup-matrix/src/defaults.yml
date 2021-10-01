@@ -1,4 +1,4 @@
-test-phpunit:
+Test PHPUnit:
   WP:
     - '5.8'
     - '5.7'

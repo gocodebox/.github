@@ -12365,7 +12365,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"test-phpunit":{"WP":["5.8","5.7","5.6","5.5","5.4"],"PHP":["8.0","7.4","7.3"],"LLMS":[false],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.0","WP":"nightly","allow-failure":true},{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.0","WP":"5.8","LLMS":"dev","allow-failure":true}],"exclude":[{"PHP":"8.0","WP":"5.5"},{"PHP":"8.0","WP":"5.4"}]}}');
+module.exports = JSON.parse('{"Test PHPUnit":{"WP":["5.8","5.7","5.6","5.5","5.4"],"PHP":["8.0","7.4","7.3"],"LLMS":[false],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.0","WP":"nightly","allow-failure":true},{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.0","WP":"5.8","LLMS":"dev","allow-failure":true}],"exclude":[{"PHP":"8.0","WP":"5.5"},{"PHP":"8.0","WP":"5.4"}]}}');
 
 /***/ }),
 
@@ -12601,11 +12601,9 @@ function loadMatrix( workflow ) {
 
 try {
 
-	console.log( process.env );
-
 	const { workflow } = context,
 		matrix = loadMatrix( workflow );
-    // console.log( matrix );
+    console.log( matrix );
     core.setOutput( 'matrix', JSON.stringify( matrix ) );
 
 } catch ( error ) {

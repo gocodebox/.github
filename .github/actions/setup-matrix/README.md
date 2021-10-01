@@ -7,13 +7,13 @@ GitHub workflow action designed to allow custom YAML configurations for a specif
 
 ## Usage
 
-Supply a custom `workflow-matrix.yml` file in the repository's `.github` directory. The contents of this file should contain one or more [job matrix configurations](https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix), keyed by the workflow name. 
+Supply a custom `workflow-matrix.yml` file in the repository's `.github` directory. The contents of this file should contain one or more [job matrix configurations](https://docs.github.com/en/github-ae@latest/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix), keyed by the workflow's name. 
 
 For example, to customize the matrix for the `test-phpunit.yml` workflow, the `workflow-matrix.yml` file might look like the following example:
 
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   merge: append
   WP:
     - "5.2"
@@ -49,7 +49,7 @@ If no custom configuration is found, it will merge (or replace) the default conf
 Default config:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -64,7 +64,7 @@ test-phpunit:
 Custom workflow-matrix.yml:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   merge: append # Optional (append is the default value).
   WP:
     - "5.6"
@@ -80,7 +80,7 @@ test-phpunit:
 Generated matrix:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -104,7 +104,7 @@ test-phpunit:
 Default config:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -119,7 +119,7 @@ test-phpunit:
 Custom workflow-matrix.yml:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   merge: replace
   WP:
     - "5.6"
@@ -131,7 +131,7 @@ test-phpunit:
 Generated matrix:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.6"
   PHP:
@@ -149,7 +149,7 @@ test-phpunit:
 Default config:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -164,7 +164,7 @@ test-phpunit:
 Custom workflow-matrix.yml:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   merge: full
   WP:
     - "5.6"
@@ -175,7 +175,7 @@ test-phpunit:
 Generated matrix:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.6"
   CUSTOM:
@@ -189,7 +189,7 @@ When overriding a default config, it might prove useful to delete a specific val
 For example, if we wish to remove WP 5.8 and remove the second object from the `include` array in the following default config:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -206,7 +206,7 @@ test-phpunit:
 Custom workflow-matrix.yml:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   __delete:
   	- WP[0]
     - include[1]
@@ -216,7 +216,7 @@ Generated matrix:
 
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.7"
   PHP:
@@ -232,7 +232,7 @@ Value deletion *may* be combined with a merge in order to remove specified value
 Default config:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.8"
     - "5.7"
@@ -249,7 +249,7 @@ test-phpunit:
 Custom workflow-matrix.yml:
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   merge: append
   WP:
   	- "5.6"
@@ -261,7 +261,7 @@ Generated matrix:
 
 
 ```yaml
-test-phpunit:
+Test PHPUnit:
   WP:
     - "5.7"
     - "5.6"
