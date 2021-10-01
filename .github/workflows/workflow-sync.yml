@@ -16,33 +16,11 @@ env:
 
   PHP_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
+    .github/workflow-templates/php-test-coverage.yml=.github/workflows/php-test-coverage.yml
+    .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
   PHP_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-quizzes
-    gocodebox/lifterlms-advanced-videos
-    gocodebox/lifterlms-assignments
-    gocodebox/lifterlms-blocks
-    gocodebox/lifterlms-convertkit
-    gocodebox/lifterlms-cli
-    gocodebox/lifterlms-custom-fields
-    gocodebox/lifterlms-gateway-authorize-net
-    gocodebox/lifterlms-gateway-paypal
-    gocodebox/lifterlms-groups
-    gocodebox/lifterlms-helper
-    gocodebox/lifterlms-integration-formidable-forms
-    gocodebox/lifterlms-integration-gravity-forms
-    gocodebox/lifterlms-integration-ninja-forms
-    gocodebox/lifterlms-integration-twilio
-    gocodebox/lifterlms-integration-woocommerce
-    gocodebox/lifterlms-integration-wpforms
-    gocodebox/lifterlms-labs
-    gocodebox/lifterlms-lite-lms-progress-tracker
-    gocodebox/lifterlms-mailchimp
-    gocodebox/lifterlms-pdfs
-    gocodebox/lifterlms-private-areas
-    gocodebox/lifterlms-rest
-    gocodebox/lifterlms-social-learning
-    gocodebox/lifterlms-stripe
 
   # Utility workflows.
   UTIL_FILES: |
