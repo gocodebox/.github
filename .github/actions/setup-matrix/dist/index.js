@@ -12601,6 +12601,8 @@ function loadMatrix( workflow ) {
 
 try {
 
+	console.log( context );
+
 	const { workflow } = context,
 		matrix = loadMatrix( workflow );
     // console.log( matrix );
