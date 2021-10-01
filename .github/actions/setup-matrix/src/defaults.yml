@@ -1,0 +1,37 @@
+test-phpunit:
+  WP:
+    - '5.8'
+    - '5.7'
+    - '5.6'
+    - '5.5'
+    - '5.4'
+  PHP:
+    - '8.0'
+    - '7.4'
+    - '7.3'
+  LLMS:
+    - false
+  allow-failure:
+    - false
+  name-append:
+    - ''
+
+  include:
+    - PHP: "8.0"
+      WP: "nightly"
+      allow-failure: true
+    - PHP: "8.1"
+      WP: "nightly"
+      allow-failure: true
+    - name-append: " (LLMS nightly)"
+      PHP: "8.0"
+      WP: "5.8"
+      LLMS: "dev"
+      allow-failure: true
+            
+  exclude:
+    # These WP Versions don't work on PHP 8.0
+    - PHP: '8.0'
+      WP: '5.5'
+    - PHP: '8.0'
+      WP: '5.4'

@@ -1,0 +1,22 @@
+{
+  "name": "setup-matrix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "author": "Team LifterLMS <team@lifterlms.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0",
+    "js-yaml": "^4.1.0",
+    "lodash.merge": "^4.6.2"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.29.0"
+  },
+  "scripts": {
+    "build": "ncc build src/index.js --license licenses.txt",
+    "watch": "npm run build -- --watch",
+    "defaults": "./node_modules/.bin/js-yaml src/defaults.yml > src/defaults.json"
+  }
+}

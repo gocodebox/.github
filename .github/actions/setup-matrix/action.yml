@@ -1,0 +1,10 @@
+name: 'Setup Build Matrix from YAML configs'
+description: 'Allows custom configurations via YAML for a workflow build matrix'
+
+outputs:
+  matrix:
+    description: 'Outputs the generated matrix for workflow'
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
