@@ -12601,7 +12601,7 @@ function loadMatrix( workflow ) {
 
 try {
 
-	console.log( context );
+	console.log( process.env );
 
 	const { workflow } = context,
 		matrix = loadMatrix( workflow );
