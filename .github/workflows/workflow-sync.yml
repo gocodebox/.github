@@ -3,9 +3,16 @@ name: Sync Organization Files
 on:
   push:
     paths:
+      # PHP Files.
       - .github/workflow-templates/coding-standards.yml
+      - .github/workflow-templates/php-test-coverage.yml
+      - .github/workflow-templates/test-phpunit.yml
+
+      # Utils.
       - .github/workflows/issue-triage.yml
       - .github/workflows/pr-ready.yml
+
+      # When this file is edited.
       - .github/workflows/workflow-sync.yml
     branches:
       - trunk
@@ -92,7 +99,7 @@ jobs:
           REPOSITORIES: ${{ env.PHP_REPOS }}
           WORKFLOW_FILES: ${{ env.PHP_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
-          COMMIT_MESSAGE: "PHP Workflow File Sync [Runner ID: ${{ env.GITHUB_RUN_NUMBER }}]"
+          COMMIT_MESSAGE: "PHP Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   util-files:
     name: Utility Files
@@ -107,4 +114,4 @@ jobs:
           REPOSITORIES: ${{ env.UTIL_REPOS }}
           WORKFLOW_FILES: ${{ env.UTIL_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
-          COMMIT_MESSAGE: "Utility File Sync [Runner ID: ${{ env.GITHUB_RUN_NUMBER }}]"
+          COMMIT_MESSAGE: "Utility File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
