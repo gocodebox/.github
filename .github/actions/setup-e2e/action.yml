@@ -68,7 +68,9 @@ runs:
     - name: Login to Docker Hub
       shell: bash
       run: |
-        [[ -n "${{ inputs.docker-user }}" ]] && [[ -n "${{ inputs.docker-pass }}" ]] && echo "${{ inputs.docker-pass }}" | docker login -u "${{ inputs.docker-user }}" --password-stdin
+        if [[ ! -z "${{ inputs.docker-user }}" && ! -z "${{ inputs.docker-pass }}" ]]; then
+          echo "${{ inputs.docker-pass }}" | docker login -u "${{ inputs.docker-user }}" --password-stdin
+        fi
     - name: Start Docker environment
       shell: bash
       run: |
