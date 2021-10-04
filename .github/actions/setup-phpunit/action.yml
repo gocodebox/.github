@@ -70,7 +70,7 @@ runs:
     - name: Load dot environment file
       shell: bash
       run: |
-        if [ ! -f ${ inputs.env-file } ]; then
+        if [[ ! -f "${ inputs.env-file }" ]]; then
           for key in $( cat ${ inputs.env-file } ); do
             echo ${key} >> $GITHUB_ENV
           done
