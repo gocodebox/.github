@@ -57,7 +57,7 @@ runs:
     - name: Secrets context to Environment variables
       shell: bash
       env:
-        SECRETS_CONTEXT: ${{ input.secrets }}
+        SECRETS_CONTEXT: ${{ inputs.secrets }}
       run: |
         for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(.key)|.[]" ); do
           echo "::add-mask::${key}"
