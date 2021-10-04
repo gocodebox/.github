@@ -49,19 +49,6 @@ runs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # Load all available secrets into the $GITHUB_ENV
-    - name: Secrets context to Environment variables
-      shell: bash
-      env:
-        SECRETS_CONTEXT: ${{ toJSON( secrets ) }}
-      run: |
-        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(.key)|.[]" ); do
-          echo "::add-mask::${key}"
-        done
-        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
-          echo ${key} >> $GITHUB_ENV
-        done
-
     # Load environment variables from the specified .env file into the $GITHUB_ENV
     - name: Load dot environment file
       shell: bash
