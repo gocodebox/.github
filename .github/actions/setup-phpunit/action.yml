@@ -51,7 +51,7 @@ runs:
 
     # Load all available secrets into the $GITHUB_ENV
     - name: Secrets context to Environment variables
-      sell: bash
+      shell: bash
       env:
         SECRETS_CONTEXT: ${{ toJSON( secrets ) }}
       run: |
@@ -64,7 +64,7 @@ runs:
 
     # Load environment variables from the specified .env file into the $GITHUB_ENV
     - name: Load dot environment file
-      sell: bash
+      shell: bash
       run: |
         if [ ! -f ${ inputs.env-file } ]; then
           for key in $( cat ${ inputs.env-file } ); do
