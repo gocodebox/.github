@@ -10,23 +10,23 @@ Test PHPUnit:
     - '7.4'
     - '7.3'
   LLMS:
-    - false
+    - ''
   allow-failure:
     - false
   name-append:
     - ''
 
   include:
-    - PHP: "8.0"
-      WP: "nightly"
+    - PHP: '8.0'
+      WP: 'nightly'
       allow-failure: true
-    - PHP: "8.1"
-      WP: "nightly"
+    - PHP: '8.1'
+      WP: 'nightly'
       allow-failure: true
-    - name-append: " (LLMS nightly)"
-      PHP: "8.0"
-      WP: "5.8"
-      LLMS: "dev"
+    - name-append: ' (LLMS nightly)'
+      PHP: '8.0'
+      WP: '5.8'
+      LLMS: 'dev'
       allow-failure: true
             
   exclude:
