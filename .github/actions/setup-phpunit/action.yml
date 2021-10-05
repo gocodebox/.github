@@ -49,10 +49,6 @@ runs:
   using: "composite"
   steps:
 
-    # Checkout.
-    - name: Checkout
-      uses: actions/checkout@v2
-
     # Load all available secrets into the $GITHUB_ENV
     - name: Secrets context to Environment variables
       shell: bash
