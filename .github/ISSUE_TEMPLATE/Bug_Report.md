@@ -43,7 +43,8 @@ about: Report a bug or issue
 </details>
 
 
-This issue has be recreated:
+### This issue has been recreated:
+
 + [ ] Locally
 + [ ] On a staging site
 + [ ] On a production website
@@ -54,3 +55,7 @@ This issue has be recreated:
 + Browser name and version
 + Operating System name and version
 + Device name and version (if applicable)
+
+### Related User Information
+
+<!-- E.g. HS-#ticket -->
