@@ -34,6 +34,8 @@ jobs:
           php-version: "8.0"
           wp-version: "5.8"
           coverage: "xdebug"
+          env-file: ".github/.env.php-test-coverage"
+          secrets: ${{ toJSON( secrets ) }}
 
       - name: Run Tests with Coverage & Upload Coverage Report
         uses: paambaati/codeclimate-action@v2.7.5
