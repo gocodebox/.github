@@ -129,7 +129,7 @@ jobs:
         uses: varunsridharan/action-github-workflow-sync@main
         with:
           DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.ESLINT_REPOS }}
+          REPOSITORIES: ${{ env.LINT_JS_REPOS }}
           WORKFLOW_FILES: |
             .github/workflow-templates/lint-js.yml=.github/workflows/lint-js.yml
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
