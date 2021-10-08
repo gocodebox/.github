@@ -67,7 +67,7 @@ env:
   UTIL_FILES: |
     .github/workflows/issue-triage.yml
     .github/workflows/pr-ready.yml
-    .github/workflow-templates/sync-branches.yml=github/workflows/sync-branches.yml
+    .github/workflow-templates/sync-branches.yml=.github/workflows/sync-branches.yml
   UTIL_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-quizzes
