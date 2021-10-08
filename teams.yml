@@ -8,7 +8,7 @@ main:
     - pondermatic
     - nrherron92
     - thomasplevy
-    - toyinogunseinde
+    - toyinogun
     - willmiddleton-lifterlms
   teams:
     success:
@@ -17,7 +17,7 @@ main:
       permission: pull
       members:
         - nrherron92
-        - toyinogunseinde
+        - toyinogun
         - willmiddleton-lifterlms
     engineering:
       name: Engineering
