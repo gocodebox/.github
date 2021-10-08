@@ -25,10 +25,10 @@ env:
   DRY_RUN: false
 
   LINT_JS_REPOS: |
-    lifterlms-blocks
-    lifterlms-advanced-videos
-    lifterlms-custom-fields
-    lifterlms-stripe
+    gocodebox/lifterlms-blocks
+    gocodebox/lifterlms-advanced-videos
+    gocodebox/lifterlms-custom-fields
+    gocodebox/lifterlms-stripe
 
   PHP_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
