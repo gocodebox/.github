@@ -3,6 +3,9 @@ name: Sync Organization Files
 on:
   push:
     paths:
+      # JS Lint File.
+      - .github/workflow-templates/lint-js.yml
+
       # PHP Files.
       - .github/workflow-templates/coding-standards.yml
       - .github/workflow-templates/php-test-coverage.yml
@@ -20,6 +23,12 @@ on:
 
 env:
   DRY_RUN: false
+
+  LINT_JS_REPOS: |
+    lifterlms-blocks
+    lifterlms-advanced-videos
+    lifterlms-custom-fields
+    lifterlms-stripe
 
   PHP_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
@@ -109,6 +118,22 @@ env:
     gocodebox/lifterlms-com-support-desk
 
 jobs:
+
+  lint-js:
+    name: Lint JS File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.ESLINT_REPOS }}
+          WORKFLOW_FILES: |
+            .github/workflow-templates/lint-js.yml=.github/workflows/lint-js.yml
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "Lint JS Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   php-workflows:
     name: PHP Files
