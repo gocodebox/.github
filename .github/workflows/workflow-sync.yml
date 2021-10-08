@@ -14,6 +14,7 @@ on:
       # Utils.
       - .github/workflows/issue-triage.yml
       - .github/workflows/pr-ready.yml
+      - .github/workflow-templates/sync-branches.yml
 
       # When this file is edited.
       - .github/workflows/workflow-sync.yml
@@ -66,6 +67,7 @@ env:
   UTIL_FILES: |
     .github/workflows/issue-triage.yml
     .github/workflows/pr-ready.yml
+    .github/workflow-templates/sync-branches.yml=github/workflows/sync-branches.yml
   UTIL_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-quizzes
