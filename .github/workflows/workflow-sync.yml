@@ -3,6 +3,9 @@ name: Sync Organization Files
 on:
   push:
     paths:
+      # E2E Test File.
+      - .github/workflow-templates/test-e2e.yml
+
       # JS Lint File.
       - .github/workflow-templates/lint-js.yml
 
@@ -24,6 +27,12 @@ on:
 
 env:
   DRY_RUN: false
+
+  E2E_TEST_REPOS: |
+    gocodebox/lifterlms
+    gocodebox/lifterlms-advanced-videos
+    gocodebox/lifterlms-blocks
+    gocodebox/lifterlms-groups
 
   LINT_JS_REPOS: |
     gocodebox/lifterlms-blocks
@@ -120,6 +129,22 @@ env:
     gocodebox/lifterlms-com-support-desk
 
 jobs:
+
+  e2e-test:
+    name: E2E Test File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.E2E_TEST_REPOS }}
+          WORKFLOW_FILES: |
+            .github/workflow-templates/test-e2e.yml=.github/workflows/test-e2e.yml
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "E2E Test Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   lint-js:
     name: Lint JS File
