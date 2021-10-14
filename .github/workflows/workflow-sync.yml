@@ -56,7 +56,6 @@ env:
     gocodebox/lifterlms-gateway-paypal
     gocodebox/lifterlms-groups
     gocodebox/lifterlms-helper
-    gocodebox/lifterlms-integration-formidable-forms
     gocodebox/lifterlms-integration-gravity-forms
     gocodebox/lifterlms-integration-ninja-forms
     gocodebox/lifterlms-integration-twilio
