@@ -28,6 +28,10 @@ on:
 env:
   DRY_RUN: false
 
+  CLI_FILES: |
+    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
+    .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
+
   E2E_TEST_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
@@ -126,6 +130,22 @@ env:
     gocodebox/lifterlms-com-support-desk
 
 jobs:
+
+  cli-files:
+    name: LLMS-CLI Test Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: |
+            gocodebox/lifterlms-cli
+          WORKFLOW_FILES: ${{ env.CLI_FILES }}
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "PHPCS & PHP Testing Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   e2e-test:
     name: E2E Test File
