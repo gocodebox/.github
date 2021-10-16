@@ -49,6 +49,10 @@ runs:
   using: "composite"
   steps:
 
+    - name: Output matrix
+      shell: bash
+      run: echo ${{ toJSON( matrix ) }}
+
     # Load all available secrets into the $GITHUB_ENV
     - name: Secrets context to Environment variables
       shell: bash
