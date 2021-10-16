@@ -92,7 +92,7 @@ runs:
         MATRIX_CONTEXT: ${{ toJSON( matrix ) }}
       run: |
         SKIP=(WP PHP LLMS allow-failure name-append)
-        for key in $( echo "$MATRIX_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring|@sh)\")|.[]" ); do
+        for key in $( echo "$MATRIX_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
             match=0
             for skip_key in "${SKIP[@]}"; do
                 if [[ "$key" =~ "$skip_key=" ]]; then
@@ -100,7 +100,7 @@ runs:
                     break
                 fi
             done
-            if [[ $match = 0 ]]; then
+            if [[ $match = 0 && "$key" =~ "=" ]]; then
               echo ${key} >> $GITHUB_ENV
             fi
         done
