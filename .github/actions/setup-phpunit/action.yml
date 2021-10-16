@@ -73,7 +73,7 @@ runs:
         fi
 
     # Environment vars used by various commands.
-    - name: Add Environment Variables
+    - name: Add default environment variables
       shell: bash
       run: |
         echo TESTS_DB_NAME=${{ inputs.db-name }} >> $GITHUB_ENV
@@ -85,6 +85,7 @@ runs:
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
         echo MYSQL_ROOT_PASSWORD=${{ inputs.db-pass }} >> $GITHUB_ENV
 
+    # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
       shell: bash
       env:
@@ -92,16 +93,16 @@ runs:
       run: |
         SKIP=(WP PHP LLMS allow-failure name-append)
         for key in $( echo "$MATRIX_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
-          match=0
-          for skip_key in "${SKIP[@]}"; do
-              if [[ $skip_key = "$key" ]]; then
-                  match=1
-                  break
-              fi
-          done
-          if [[ $match = 1 ]]; then
-            echo ${key} >> $GITHUB_ENV
-          fi
+            match=0
+            for skip_key in "${SKIP[@]}"; do
+                if [[ "$key" =~ "$skip_key=" ]]; then
+                    match=1
+                    break
+                fi
+            done
+            if [[ $match = 0 ]]; then
+              echo ${key} >> $GITHUB_ENV
+            fi
         done
 
     # Setup PHP
