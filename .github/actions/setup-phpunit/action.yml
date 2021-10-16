@@ -49,10 +49,6 @@ runs:
   using: "composite"
   steps:
 
-    - name: Output matrix
-      shell: bash
-      run: echo ${{ toJSON( matrix ) }}
-
     # Load all available secrets into the $GITHUB_ENV
     - name: Secrets context to Environment variables
       shell: bash
@@ -88,6 +84,25 @@ runs:
         echo WP_TESTS_VERSION=${{ inputs.wp-tests-version }} >> $GITHUB_ENV
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
         echo MYSQL_ROOT_PASSWORD=${{ inputs.db-pass }} >> $GITHUB_ENV
+
+    - name: Add extra matrix vars to environment
+      shell: bash
+      env:
+        MATRIX_CONTEXT: ${{ toJSON( matrix ) }}
+      run: |
+        SKIP=(WP PHP LLMS allow-failure name-append)
+        for key in $( echo "$MATRIX_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+          match=0
+          for skip_key in "${SKIP[@]}"; do
+              if [[ $skip_key = "$key" ]]; then
+                  match=1
+                  break
+              fi
+          done
+          if [[ $match = 1 ]]; then
+            echo ${key} >> $GITHUB_ENV
+          fi
+        done
 
     # Setup PHP
     - name: Setup PHP
