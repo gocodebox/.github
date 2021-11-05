@@ -39,6 +39,7 @@ env:
     gocodebox/lifterlms-groups
 
   LINT_JS_REPOS: |
+    gocodebox/lifterlms
     gocodebox/lifterlms-blocks
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-custom-fields
