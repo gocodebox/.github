@@ -138,12 +138,14 @@ runs:
       run: composer update
 
     # Special Conditions for WP 5.4
-    #   + Rollback PHPUnit to ^7.5
+    #   + Remove composer.lock to allow dependency grades during rollback.
+    #   + Rollback PHPUnit to ^7.5.
     #   + Unset the WP_TESTS_VERSION env var so that the 5.4 *branch* (not tag) will be used.
     - name: Handle Special Conditions for WP 5.4
       shell: bash
       run: |
         if [[ "5.4" == "${{ inputs.wp-version }}" ]]; then
+          rm composer.lock
           composer require phpunit/phpunit:^7.5.20 -W
           echo WP_TESTS_VERSION=false >> $GITHUB_ENV
         fi
