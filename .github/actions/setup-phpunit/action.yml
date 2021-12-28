@@ -145,7 +145,7 @@ runs:
       shell: bash
       run: |
         if [[ "5.4" == "${{ inputs.wp-version }}" ]]; then
-          rm composer.lock
+          [ -f composer.lock ] && rm composer.lock
           composer require phpunit/phpunit:^7.5.20 -W
           echo WP_TESTS_VERSION=false >> $GITHUB_ENV
         fi
