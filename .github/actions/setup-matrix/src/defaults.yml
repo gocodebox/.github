@@ -41,6 +41,15 @@ Test PHPUnit:
       allow-failure: true
             
   exclude:
-    # These WP Versions don't work on PHP 8.0
+    # These WP Versions don't work on PHP 8.1.
+    - PHP: '8.1'
+      WP: '5.8'
+    - PHP: '8.1'
+      WP: '5.7'
+    - PHP: '8.1'
+      WP: '5.6'
+    - PHP: '8.1'
+      WP: '5.5'
+    # These WP Versions don't work on PHP 8.0.
     - PHP: '8.0'
       WP: '5.5'
