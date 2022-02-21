@@ -5,4 +5,5 @@ This directory holds various pieces of documentation mostly used by the @gocodeb
 
 ## Table of Contents
 
-+ [codeowners](./codeowners.md)
++ [deployment](./deployment.md)
++ [triage](./triage.md)
