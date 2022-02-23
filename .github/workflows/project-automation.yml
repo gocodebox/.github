@@ -5,110 +5,87 @@ on:
     types:
       - opened
       - reopened
-      - closed
   pull_request:
     types:
       - opened
       - reopened
       - review_requested
-      - ready_for_review
-      - closed
 
 env:
-  DEFAULT_CODEOWNER: '@thomasplevy'
+  PRIMARY_CODEOWNER: '@thomasplevy'
+  PROJECT_ORG: gocodebox
+  PROJECT_ID: 18
 
 jobs:
-  issue-opened-or-reopened:
-    name: Opened or Reopened Issue
+
+  #######################################
+  # Add issue to the Development project.
+  #######################################
+  issue-to-project:
+    name: Move Issue to Project Board
     runs-on: ubuntu-latest
     if: ( 'issues' == github.event_name && ( 'opened' == github.event.action || 'reopened' == github.event.action ) )
     steps:
-
-      # Add to project.
-      #################
       - name: Add Issue to Project
         uses: leonsteinhaeuser/project-beta-automations@v1.2.0
         with:
           gh_token: ${{ secrets.ORG_WORKFLOWS }}
-          organization: gocodebox
-          project_id: 18
+          organization: ${{ env.PROJECT_ORG }}
+          project_id: ${{ env.PROJECT_ID }}
           resource_node_id: ${{ github.event.issue.node_id }}
           status_value: "Awaiting Triage"
 
-      - uses: hmarr/debug-action@v2
+      # - uses: hmarr/debug-action@v2
 
+  ####################################
+  # Assign to the project's CODEOWNER.
+  ####################################
+  issue-assig:
+    name: Assign Issue to the Primary CODEOWNER
+    runs-on: ubuntu-latest
+    if: ( 'issues' == github.event_name && ( 'opened' == github.event.action || 'reopened' == github.event.action ) && ( null == github.event.issue.assignee ) )
+    steps:      
+      - name: Check CODEOWNERS file existence
+        id: codeowners_file_exists
+        uses: andstor/file-existence-action@v1
+        with:
+          files: .github/CODEOWNERS
 
-      # # Assign to the project's CODEOWNER.
-      # ####################################
-      # - name: Check CODEOWNERS file existence
-      #   id: codeowners_file_exists
-      #   uses: andstor/file-existence-action@v1
-      #   with:
-      #     files: .github/CODEOWNERS
-
-      # - name: Parse CODEOWNERS file
-      #   id: codeowner
-      #   if: steps.codeowners_file_exists.outputs.files_exists == 'true'
-      #   uses: SvanBoxel/codeowners-action@v1
-      #   with:
-      #     path: .github/CODEOWNERS
+      - name: Parse CODEOWNERS file
+        id: codeowner
+        if: steps.codeowners_file_exists.outputs.files_exists == 'true'
+        uses: SvanBoxel/codeowners-action@v1
+        with:
+          path: .github/CODEOWNERS
       
-      # - name: Update PRIMARY_CODEOWNER env var
-      #   if: steps.codeowners_file_exists.outputs.files_exists == 'true'
-      #   run: |
-      #     echo PRIMARY_CODEOWNER=$( echo '${{ steps.codeowner.outputs.codeowners }}' | jq -r '."*"[0]' ) >> $GITHUB_ENV   
+      - name: Update PRIMARY_CODEOWNER env var
+        if: steps.codeowners_file_exists.outputs.files_exists == 'true'
+        run: |
+          echo PRIMARY_CODEOWNER=$( echo '${{ steps.codeowner.outputs.codeowners }}' | jq -r '."*"[0]' ) >> $GITHUB_ENV   
 
-      # - name: Strip @ from username
-      #   run: |
-      #     echo "PRIMARY_CODEOWNER=${PRIMARY_CODEOWNER#?}" >> $GITHUB_ENV
+      - name: Strip @ from username
+        run: |
+          echo "PRIMARY_CODEOWNER=${PRIMARY_CODEOWNER#?}" >> $GITHUB_ENV
 
-      # - name: Assign issue
-      #   uses: pozil/auto-assign-issue@v1
-      #   with:
-      #     repo-token: ${{ secrets.ORG_WORKFLOWS }}
-      #     assignees: ${{ env.PRIMARY_CODEOWNER }}
+      - name: Assign issue
+        uses: pozil/auto-assign-issue@v1
+        with:
+          repo-token: ${{ secrets.ORG_WORKFLOWS }}
+          assignees: ${{ env.PRIMARY_CODEOWNER }}
 
-
-
-  # issue_closed:
-  #   name: issue_closed
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'issues' && github.event.action == 'closed'
-  #   steps:
-  #     - name: Moved issue to ${{ env.done }}
-  #       uses: leonsteinhaeuser/project-beta-automations@v1.2.0
-  #       with:
-  #         gh_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  #         user: sample-user
-  #         # organization: sample-org
-  #         project_id: 1
-  #         resource_node_id: ${{ github.event.issue.node_id }}
-  #         status_value: ${{ env.done }} # Target status
-  # pr_opened_or_reopened_or_reviewrequested:
-  #   name: pr_opened_or_reopened_or_reviewrequested
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'review_requested')
-  #   steps:
-  #     - name: Move PR to ${{ env.in_progress }}
-  #       uses: leonsteinhaeuser/project-beta-automations@v1.2.0
-  #       with:
-  #         gh_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  #         user: sample-user
-  #         # organization: sample-org
-  #         project_id: 1
-  #         resource_node_id: ${{ github.event.pull_request.node_id }}
-  #         status_value: ${{ env.in_progress }} # Target status
-  # pr_closed:
-  #   name: pr_closed
-  #   runs-on: ubuntu-latest
-  #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
-  #   steps:
-  #     - name: Move PR to ${{ env.done }}
-  #       uses: leonsteinhaeuser/project-beta-automations@v1.2.0
-  #       with:
-  #         gh_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-  #         user: sample-user
-  #         # organization: sample-org
-  #         project_id: 1
-  #         resource_node_id: ${{ github.event.pull_request.node_id }}
-  #         status_value: ${{ env.done }} # Target status
+  #####################################
+  # Add PRs to the Development project.
+  #####################################
+  pr-to-board:
+    name: Move Pull Request to the Project Board
+    runs-on: ubuntu-latest
+    if: ( 'pull_request' == github.event_name && ( 'opened' == github.event.action || 'reopened' == github.event.action || 'review_requested' == github.event.action ) )
+    steps:
+      - name: Mark PR as Awaiting Review
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.0
+        with:
+          gh_token: ${{ secrets.ORG_WORKFLOWS }}
+          organization: ${{ env.PROJECT_ORG }}
+          project_id: ${{ env.PROJECT_ID }}
+          resource_node_id: ${{ github.event.pull_request.node_id }}
+          status_value: "Awaiting Review"
