@@ -21,7 +21,7 @@ jobs:
   issue-opened-or-reopened:
     name: Opened or Reopened Issue
     runs-on: ubuntu-latest
-    if: 'issues' == github.event_name && ('opened' == github.event.action || 'reopened' == github.event.action )
+    if: ( 'issues' == github.event_name && ( 'opened' == github.event.action || 'reopened' == github.event.action )
     steps:
 
       # Add to project.
