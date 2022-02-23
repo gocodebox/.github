@@ -12,8 +12,9 @@
 name: New Issue Triage and Assignment
 
 on:
-  issues:
-    types: [ opened ]
+  workflow_dispatch:
+  # issues:
+  #   types: [ opened ]
 
 jobs:
   handle-new-issue:
