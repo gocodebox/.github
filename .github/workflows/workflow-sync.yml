@@ -17,13 +17,14 @@ on:
       # Utils.
       - .github/workflows/issue-triage.yml
       - .github/workflows/pr-ready.yml
+      - .github/workflows/project-automation.yml
       - .github/workflow-templates/sync-branches.yml
 
       # When this file is edited.
       - .github/workflows/workflow-sync.yml
     branches:
       - trunk
-    workflow_dispatch:
+  workflow_dispatch:
 
 env:
   DRY_RUN: false
@@ -76,8 +77,7 @@ env:
 
   # Utility workflows.
   UTIL_FILES: |
-    .github/workflows/issue-triage.yml
-    .github/workflows/pr-ready.yml
+    .github/workflows/project-automation.yml
     .github/workflow-templates/sync-branches.yml=.github/workflows/sync-branches.yml
   UTIL_REPOS: |
     gocodebox/lifterlms
