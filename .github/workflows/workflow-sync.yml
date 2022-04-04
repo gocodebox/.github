@@ -111,7 +111,7 @@ env:
     gocodebox/lifterlms-launchpad-child
     gocodebox/sky-pilot
     gocodebox/lifterlms-zapier
-    gocodebox/lifterlms-api-node
+    gocodebox/llms-api-node
     gocodebox/private-issues
     gocodebox/snippets
     gocodebox/dev-tools
