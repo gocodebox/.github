@@ -47,7 +47,6 @@ env:
     gocodebox/lifterlms-stripe
 
   PHP_FILES: |
-    .github/workflow-templates/.editorconfig=.editorconfig
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
     .github/workflow-templates/php-test-coverage.yml=.github/workflows/php-test-coverage.yml
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
