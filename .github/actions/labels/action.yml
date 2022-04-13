@@ -1,0 +1,12 @@
+name: 'Organization Repository Labels'
+description: 'Manages issue and pull request labels for all organization repositories'
+inputs:
+  repo-token:
+    description: 'A GitHub access token secret with write access to the organization repositories'
+    required: true
+  dry-run:
+    description: If true, performs the sync, otherwise outputs changes to be made.
+    default: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

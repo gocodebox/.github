@@ -1,0 +1,22 @@
+{
+  "name": "labels",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "author": "Team LifterLMS <team@lifterlms.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.1",
+    "chalk": "^5.0.1",
+    "github-label-sync": "^2.2.0",
+    "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "build": "ncc build src/index.js --license licenses.txt",
+    "start": "npm run build -- --watch"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.4"
+  }
+}
