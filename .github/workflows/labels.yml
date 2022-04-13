@@ -1,0 +1,31 @@
+name: Repository Labels
+
+on:
+  workflow_dispatch:
+    inputs: 
+      dry-run:
+        description: "Is this a dry run?"
+        type: boolean
+        required: true
+        default: true
+  push:
+    paths:
+      - labels.yml
+    branches:
+      - trunk
+  schedule:
+    # Every 24 hours: when new repos are created they'll get labels synced within 24 hours of creation.
+    - cron: '0 */24 * * *'
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update teams
+        uses: ./.github/actions/labels
+        with:
+          repo-token: ${{ secrets.ORG_WORKFLOWS }}
+          dry-run: ${{ github.event.inputs.dry-run || false }}
+
