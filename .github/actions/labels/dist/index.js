@@ -62831,7 +62831,7 @@ module.exports = require("node:os");
 
 /***/ }),
 
-/***/ 742:
+/***/ 7742:
 /***/ ((module) => {
 
 "use strict";
@@ -62839,7 +62839,7 @@ module.exports = require("node:process");
 
 /***/ }),
 
-/***/ 997:
+/***/ 5997:
 /***/ ((module) => {
 
 "use strict";
@@ -63290,7 +63290,7 @@ const
 const main = async () => {
 
 	const
-		{ default: chalk } = await __nccwpck_require__.e(/* import() */ 210).then(__nccwpck_require__.bind(__nccwpck_require__, 210)), 
+		{ default: chalk } = await __nccwpck_require__.e(/* import() */ 210).then(__nccwpck_require__.bind(__nccwpck_require__, 9210)), 
 		labels = yaml.load( readFileSync( configFile, 'utf8' ) );
 
 	const repos = await octokit.paginate( 'GET /orgs/{org}/repos', {
