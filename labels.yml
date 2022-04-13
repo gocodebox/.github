@@ -1,0 +1,94 @@
+###
+#
+# Organization repository labels manifest.
+#
+###
+
+# Severity.
+- name: 'Severity: High'
+  color: ffccfa
+  description: ''
+- name: 'Severity: Low'
+  color: ffccfa
+  description: ''
+- name: 'Severity: Normal'
+  color: ffccfa
+  description: ''
+
+# Status.
+- name: "Status: Can't Recreate"
+  color: 007acc
+  description: Unable to recreate using the provided information or recreation steps
+- name: 'Status: Changes Requested'
+  color: 007acc
+  description: Changes have been requested or suggested and will need to be made before
+    the PR is accepted
+- name: 'Status: Has Alternative'
+  color: 007acc
+  description: A workaround or alternative solution is available
+- name: 'Status: Has PR'
+  color: 007acc
+  description: This issue has an open pull request
+  aliases:
+  - status:has-pr
+  - 'status: has-pr'
+- name: 'Status: Need Information'
+  color: 007acc
+  description: More information is required to proceed
+- name: 'Status: Needs Documentation'
+  color: 007acc
+  description: The pull request requires documentation or changelog updates before
+    being merged
+- name: 'Status: Needs Tests'
+  color: 007acc
+  description: Tests need to be written for the PR
+
+# Type.
+- name: 'Type: Bug'
+  color: aa0000
+  description: Bugs and errors
+  aliases:
+  - bug
+- name: 'Type: Conflict'
+  color: aa0000
+  description: Plugin and theme conflicts
+- name: 'Type: Documentation'
+  color: aa0000
+  description: Issue related to documentation
+  aliases:
+  - documentation
+- name: 'Type: Enhancement'
+  color: aa0000
+  description: Improvements existing features or code
+  aliases:
+  - enhancement
+- name: 'Type: Feature Request'
+  color: aa0000
+  description: This issue is an idea or request for a new feature
+- name: 'Type: Notes'
+  color: aa0000
+  description: Notes and discussions
+- name: 'Type: Question'
+  color: aa0000
+  description: This issue is a question
+  aliases:
+  - question
+
+# Contributor.
+- name: good first issue
+  color: b6d369
+  description: If you're a first time contributor this is a good issue for you!
+- name: hacktoberfest
+  color: b6d369
+  description: PRs for this issue count towards Hacktoberfest contributions!
+- name: help wanted
+  color: b6d369
+  description: Looking for contributors to assist with this issue
+
+# Misc.
+- name: dependencies
+  color: '444444'
+  description: Pull requests that update a dependency file
+- name: invalid
+  color: '444444'
+  description: This issue or PR is invalid
