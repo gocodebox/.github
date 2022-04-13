@@ -18,12 +18,12 @@ on:
     - cron: '0 */24 * * *'
 
 jobs:
-  main:
+  sync-labels:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Update teams
+      - name: Sync Labels
         uses: ./.github/actions/labels
         with:
           repo-token: ${{ secrets.ORG_WORKFLOWS }}
