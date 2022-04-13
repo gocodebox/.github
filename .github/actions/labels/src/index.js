@@ -56,7 +56,7 @@ const main = async () => {
 				warn: core.warning,
 			},
 			allowAddedLabels: true,
-			repo: `${ org }/lifterlms-zapier`,
+			repo: `${ org }/${ name }`,
 		} );
 
 	}
