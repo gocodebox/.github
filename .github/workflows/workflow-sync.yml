@@ -16,6 +16,7 @@ on:
 
       # Utils.
       - .github/workflows/issue-triage.yml
+      - .github/workflows/keep-alive.yml
       - .github/workflows/pr-ready.yml
       - .github/workflows/project-automation.yml
       - .github/workflow-templates/sync-branches.yml
