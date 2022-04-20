@@ -1,0 +1,51 @@
+###
+#
+# This workflow file is deployed into this repository via the "Sync Organization Files" workflow
+#
+# Direct edits to this file are at risk of being overwritten by the next sync. All edits should be made
+# to the source file.
+#
+# @see Sync workflow {@link https://github.com/gocodebox/.github/actions/workflows/workflow-sync.yml}
+# @see Workflow template {@link https://github.com/gocodebox/.github/blob/trunk/.github/workflow-templates/keep-alive.yml}
+#
+###
+name: Keep Alive
+
+on:
+  # Once daily at 00:00 UTC.
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+
+  check-last-commit:
+    name: "Check repo's last commit"
+    runs-on: ubuntu-latest
+    outputs:
+      requires-commit: ${{ steps.check-last-commit.outputs.requires-commit }}
+    steps:
+      - name: Test secret
+        id: check-last-commit
+        run: |
+          LAST_COMMIT_DATE=$( git --no-pager log -1 --format=%ct )
+          echo $LAST_COMMIT_DATE
+          echo "::set-output name=requires-commit::false"
+
+  keep-alive:
+    name: Keep Alive
+    runs-on: ubuntu-latest
+    needs: check-last-commit
+    if: ${{ 'true' == needs.check-last-commit.outputs.requires-commit }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ORG_WORKFLOWS }}
+          fetch-depth: 0
+      - name: Add an empty commit
+        run: |
+          git config --global user.name "keepalive[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git commit --allow-empty -m "Automated commit from the Keep Alive workflow to keep the repository active"
+          git push origin HEAD
