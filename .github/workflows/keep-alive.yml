@@ -25,6 +25,7 @@ jobs:
     outputs:
       requires-commit: ${{ steps.check-last-commit.outputs.requires-commit }}
     steps:
+      - uses: actions/checkout@v2
       - name: Test secret
         id: check-last-commit
         run: |
