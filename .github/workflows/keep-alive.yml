@@ -33,7 +33,7 @@ jobs:
           NOW=$( date +%s )
           DIFF_IN_DAYS=$(( ( NOW - LAST_COMMIT_TIME ) / 86400 ))
 
-          echo $DIFF_IN_DAYS
+          echo "Days since last commit: $DIFF_IN_DAYS"
 
           if [[ $DIFF_IN_DAYS > 50 ]]; then
             echo "::set-output name=requires-commit::true"
