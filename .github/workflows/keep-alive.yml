@@ -31,7 +31,7 @@ jobs:
         run: |
           LAST_COMMIT_TIME=$( git --no-pager log -1 --format=%ct )
           NOW=$( date +%s )
-          DIFF_IN_DAYS=$( ( ( $NOW - $LAST_COMMIT_TIME ) / 86400 ) )
+          DIFF_IN_DAYS=$(( ( NOW - LAST_COMMIT_TIME ) / 86400 ))
 
           echo $DIFF_IN_DAYS
 
