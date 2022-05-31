@@ -12365,7 +12365,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Test E2E":{"WP":["latest","5.8","5.7","5.6","5.5"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["5.9","5.8","5.7","5.6","5.5"],"PHP":["8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.0","WP":"5.8","LLMS":"dev","allow-failure":true},{"PHP":"8.1","WP":"5.9","allow-failure":true}],"exclude":[{"PHP":"8.0","WP":"5.5"}]}}');
+module.exports = JSON.parse('{"Test E2E":{"WP":["latest","5.9","5.8","5.7","5.6"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["6.0","5.9","5.8","5.7","5.6"],"PHP":["8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.0","WP":"5.9","LLMS":"dev","allow-failure":true},{"PHP":"8.1","WP":"6.0","allow-failure":true}],"exclude":null}}');
 
 /***/ }),
 

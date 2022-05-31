@@ -2,10 +2,10 @@
   "Test E2E": {
     "WP": [
       "latest",
+      "5.9",
       "5.8",
       "5.7",
-      "5.6",
-      "5.5"
+      "5.6"
     ],
     "allow-failure": [
       false
@@ -19,11 +19,11 @@
   },
   "Test PHPUnit": {
     "WP": [
+      "6.0",
       "5.9",
       "5.8",
       "5.7",
-      "5.6",
-      "5.5"
+      "5.6"
     ],
     "PHP": [
       "8.0",
@@ -47,21 +47,16 @@
       {
         "name-append": " (LLMS nightly)",
         "PHP": "8.0",
-        "WP": "5.8",
+        "WP": "5.9",
         "LLMS": "dev",
         "allow-failure": true
       },
       {
         "PHP": "8.1",
-        "WP": "5.9",
+        "WP": "6.0",
         "allow-failure": true
       }
     ],
-    "exclude": [
-      {
-        "PHP": "8.0",
-        "WP": "5.5"
-      }
-    ]
+    "exclude": null
   }
 }
