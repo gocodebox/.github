@@ -43,7 +43,7 @@ Test PHPUnit:
       WP: '6.0'
       allow-failure: true
             
-  exclude:
+  # exclude:
     # These WP Versions don't work on PHP 8.1.
     # - PHP: '8.1'
     #   WP: '5.8'
