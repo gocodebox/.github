@@ -56,7 +56,6 @@
         "WP": "6.0",
         "allow-failure": true
       }
-    ],
-    "exclude": null
+    ]
   }
 }
