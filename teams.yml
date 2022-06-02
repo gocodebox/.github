@@ -7,6 +7,7 @@ main:
     - eri-trabiccolo
     - pondermatic
     - nrherron92
+    - sekanderb
     - thomasplevy
     - willmiddleton-lifterlms
   teams:
@@ -25,6 +26,13 @@ main:
         - eri-trabiccolo
         - pondermatic
         - thomasplevy
+    marketing:
+      name: Marketing
+      description: 'The LifterLMS marketing team'
+      permission: pull
+      members:
+        - chrisbadgett
+        - sekanderb
     admin:
       name: Admin
       description: 'The codeBOX company administrators'
