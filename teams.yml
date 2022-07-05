@@ -5,7 +5,6 @@ main:
   members:
     - chrisbadgett
     - eri-trabiccolo
-    - pondermatic
     - nrherron92
     - sekanderb
     - thomasplevy
@@ -24,7 +23,6 @@ main:
       permission: push
       members:
         - eri-trabiccolo
-        - pondermatic
         - thomasplevy
     marketing:
       name: Marketing

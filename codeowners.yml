@@ -1,0 +1,29 @@
+eri-trabiccolo:
+  - lifterlms-advanced-videos
+  - lifterlms-custom-fields
+  - lifterlms-groups
+  - lifterlms-integration-formidable-forms
+  - lifterlms-integration-gravity-forms
+  - lifterlms-integration-ninja-forms
+  - lifterlms-integration-twilio
+  - lifterlms-interation-woocommerce
+  - lifterlms-integration-wpforms
+  - lifterlms-rest
+
+thomasplevy:
+  - lifterlms
+  - lifterlms-advanced-quizzes
+  - lifterlms-blocks
+  - lifterlms-cli
+  - lifterlms-gateway-authorize-net
+  - lifterlms-gateway-paypal
+  - lifterlms-helper
+  - lifterlms-private-areas
+  - lifterlms-stripe
+  - lifterlms-labs
+  - lifterlms-lite-lms-progress-tracker
+  - lifterlms-assignments
+  - lifterlms-pdfs
+  - lifterlms-social-learning
+  - lifterlms-convertkit
+  - lifterlms-mailchimp
