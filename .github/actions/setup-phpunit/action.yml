@@ -34,7 +34,7 @@ inputs:
     default: "5.8"
   wp-tests-version:
     description: "WordPress tests library version"
-    default: false
+    default: "trunk"
 
   # Environment File
   env-file:
