@@ -34,7 +34,7 @@ inputs:
     default: "5.8"
   wp-tests-version:
     description: "WordPress tests library version"
-    default: "trunk"
+    default: false
 
   # Environment File
   env-file:
@@ -148,6 +148,19 @@ runs:
           [ -f composer.lock ] && rm composer.lock
           composer require phpunit/phpunit:^7.5.20 -W
           echo WP_TESTS_VERSION=false >> $GITHUB_ENV
+        fi
+
+    # Special Conditions for WP/PHP Version combinations where we have to use a different tests lib version.
+    # Changes to the test lib on 6.1 necessitate this change to be made.
+    - name: Handle Special Conditions for WP Tests Lib
+      shell: bash
+      run: |
+        if [[ "5.8" == "${{ inputs.wp-version }}" && "7.4" == "${{ inputs.php-version }}" ]]; then
+          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
+        elif [[ "5.7" == "${{ inputs.wp-version }}" && "8.0" == "${{ inputs.php-version }}" ]]; then
+          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
+        elif [[ "5.6" == "${{ inputs.wp-version }}" && "8.0" == "${{ inputs.php-version }}" ]]; then
+          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
         fi
 
     # Install WP Tests.
