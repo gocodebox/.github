@@ -150,17 +150,14 @@ runs:
           echo WP_TESTS_VERSION=false >> $GITHUB_ENV
         fi
 
-    # Special Conditions for WP/PHP Version combinations where we have to use a different tests lib version.
+    # Special Conditions for WP Versions 5.8 & lowers where we have to use a later tests lib version.
     # Changes to the test lib on 6.1 necessitate this change to be made.
     - name: Handle Special Conditions for WP Tests Lib
       shell: bash
       run: |
-        if [[ "5.8" == "${{ inputs.wp-version }}" && "7.4" == "${{ inputs.php-version }}" ]]; then
+        if [[ "5.8" == "${{ inputs.wp-version }}" || "5.7" == "${{ inputs.wp-version }}" || "5.6" == "${{ inputs.wp-version }}" ]]; then
           echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
-        elif [[ "5.7" == "${{ inputs.wp-version }}" && "8.0" == "${{ inputs.php-version }}" ]]; then
-          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
-        elif [[ "5.6" == "${{ inputs.wp-version }}" && "8.0" == "${{ inputs.php-version }}" ]]; then
-          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
+          echo "Using WP Tests Lib Version: $WP_TESTS_VERSION"
         fi
 
     # Install WP Tests.
