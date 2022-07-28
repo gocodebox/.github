@@ -1,35 +1,41 @@
-Issue Triage Process
-====================
+Issue Triage Process & Workflow
+===============================
 
 ## GitHub Project Boards
 
-Issues are tracked across three organization-wide GitHub project boards.
+Issues and Pull Requests are tracked on the main organization [project](https://github.com/orgs/gocodebox/projects/18/views/1).
 
-+ [Triage](https://github.com/orgs/gocodebox/projects/14): New and unreviewed issues, bug reports, etc...
-+ [Active](https://github.com/orgs/gocodebox/projects/9): All issues and pull requests which are actively being worked on or have been prioritized for immediate development. Immediate development is typically anything that will be started within the next two weeks.
-+ [Future](https://github.com/orgs/gocodebox/projects/15): Any issues which have been reviewed and prioritized to be worked on when capacity allows. Typically any issue which will not be addressed within the following two weeks.
-
+New issues and Pull Requests are automatically added to the project with the "Awaiting Triage" status. Automation is in place to automatically update the status of an item based depending on the circumstance.
 
 ## Triage Workflow
 
-The Triage board is to be reviewed daily and should be moved to either the Active or Future board when triage is complete. The CODEOWNER is responsible for determining priority and placement of the issue during triage. They may request assistance from the other developers on the team and assign issues according to availability and capacity.
+Issues with the "Awaiting Triage" status are to be reviewed daily.
 
-Any issues assigned to Thomas which have been awaiting triage for more than 24 hours should be triaged by the next available developer.
+When beginning the review of an of an untriaged issue you should:
 
-When a developer begins triage of an issue they should:
++ Assign the issue to yourself. This will let other developers know that you are already reviewing it and will reduce unnecessary duplicate efforts.
++ Update the issue's project status to "In Review"
++ If the issue is a bug report, attempt to recreate the bug and confirm it is not desired or expected behavior.
+	+ If the bug can be confirmed:
+		+ Apply the status issue label "bug".
+		+ Determine the bug's severity and apply the associated issue label.
+	+ If the bug cannot be confirmed:
+		+ If more information is required, request it from the reporter and apply the "Need Information" issue status label.
+		+ If the bug is invalid, let the reporter the issue could not be recreated with the information supplied and apply the "Can't Recreate" status label.
+		+ If the reported issue is expected behavior, let the reporter know and, where possible, supply links to related documentation or relevant lines of code.
+	+ In the event of other issues such as feature requests or suggestions apply the relevant status label
 
-+ Assign the issue to yourself
-+ Move the issue to the "In Review" column on the "Triage" board (this denotes that a developer is currently working on it and will save duplicate efforts due to lack of knowledge that the issue is already being triaged).
+In most circumstances a reply summarizing the review and our findings should be made on the issue to let the reporter know what was determined and the new status.
 
-When an issue has been confirmed and moved out of the Triage board the following should occur:
+After review and triage is complete the issue should either be closed, prioritized for immediate development, or backlogged.
 
-+ Issue tags should be reviewed and updated: is the issue a bug, a feature request? What is the issue severity? 
-+ A comment should be made updating the the reporter on the new status and providing any information uncovered during the initial review.
+A general rule is that low-severity issues are "safe" to be backlogged, normal or high-priority bugs should be prioritized for development. With minor issues that can be resolved rather quickly it is usually acceptable to immediately patch the issue during review. However, with larger issues it is best to discuss the prioritization with the engineering team and determine the prioritization together, taking into consideration active priorities and other issues.
 
-If more information is required from the reporter the following should occur:
+When an issue is determined to be invalid, as a courtesy to the reporter, do not immediately close the issue. Instead wait 2-3 days for the reporter to respond. After a few days of inactivity from the reporter the issue should be closed with a note to the reporter letting them know the issue is invalid and if they would like to discuss it further they can reply and we'll reopen.
 
-+ The label "Status: Need information" should be applied to the issue.
-+ A comment should be made requesting specific information from the reporter.
+When we request more information from a reporter and they do not respond the developer assigned the issue should bump the issue every 3-5 days. If the reporter doesn't respond after 2-3 bumps, the issue can be closed with a note saying we'll reopen when the requested information is supplied.
+
+Any issues assigned to Thomas which have been awaiting triage for more than 24 hours should be considered stale and can be reviewed by the next available developer.
 
 If you are unsure how to proceed after beginning review of an issue, tag the engineering team (`@gocodebox/engineering`) or a specific engineer to request assistance. 
 
