@@ -6,8 +6,11 @@ on:
       # E2E Test File.
       - .github/workflow-templates/test-e2e.yml
 
-      # JS Lint File.
+      # ES Lint File.
       - .github/workflow-templates/lint-js.yml
+
+      # JS Unit Test File.
+      - .github/workflow-templates/test-js-unit.yml
 
       # PHP Files.
       - .github/workflow-templates/coding-standards.yml
@@ -15,9 +18,7 @@ on:
       - .github/workflow-templates/test-phpunit.yml
 
       # Utils.
-      - .github/workflows/issue-triage.yml
       - .github/workflows/keep-alive.yml
-      - .github/workflows/pr-ready.yml
       - .github/workflows/project-automation.yml
       - .github/workflow-templates/sync-branches.yml
 
@@ -40,12 +41,17 @@ env:
     gocodebox/lifterlms-blocks
     gocodebox/lifterlms-groups
 
-  LINT_JS_REPOS: |
+  ES_LINT_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-blocks
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-custom-fields
+    gocodebox/lifterlms-gateway-paypal
     gocodebox/lifterlms-stripe
+
+  JS_UNIT_REPOS: |
+    gocodebox/lifterlms
+    gocodebox/lifterlms-gateway-paypal
 
   PHP_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
@@ -167,7 +173,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "E2E Test Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
-  lint-js:
+  eslint:
     name: Lint JS File
     runs-on: ubuntu-latest
     steps:
@@ -177,11 +183,27 @@ jobs:
         uses: varunsridharan/action-github-workflow-sync@main
         with:
           DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.LINT_JS_REPOS }}
+          REPOSITORIES: ${{ env.ES_LINT_REPOS }}
           WORKFLOW_FILES: |
             .github/workflow-templates/lint-js.yml=.github/workflows/lint-js.yml
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "Lint JS Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
+
+  js-unit:
+    name: JS Unit File
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.JS_UNIT_REPOS }}
+          WORKFLOW_FILES: |
+            .github/workflow-templates/test-js-unit.yml=.github/workflows/test-js-unit.yml
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "Test JS Unit Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   php-workflows:
     name: PHP Files
