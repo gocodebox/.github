@@ -5,6 +5,7 @@ main:
   members:
     - chrisbadgett
     - eri-trabiccolo
+    - manananomas
     - nrherron92
     - sekanderb
     - thomasplevy
@@ -15,6 +16,7 @@ main:
       description: 'The LifterLMS Customer success and support team'
       permission: pull
       members:
+        - manananomas
         - nrherron92
         - willmiddleton-lifterlms
     engineering:
