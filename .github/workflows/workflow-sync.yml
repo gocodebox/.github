@@ -81,6 +81,7 @@ env:
     gocodebox/lifterlms-rest
     gocodebox/lifterlms-social-learning
     gocodebox/lifterlms-stripe
+    gocodebox/lifterlms-com-paypal-connect
 
   # Utility workflows.
   UTIL_FILES: |
