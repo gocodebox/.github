@@ -14,7 +14,7 @@
     "@vercel/ncc": "^0.29.0"
   },
   "scripts": {
-    "build": "ncc build src/index.js --license licenses.txt",
+    "build": "npm run defaults && ncc build src/index.js --license licenses.txt",
     "watch": "npm run build -- --watch",
     "defaults": "./node_modules/.bin/js-yaml src/defaults.yml > src/defaults.json"
   }
