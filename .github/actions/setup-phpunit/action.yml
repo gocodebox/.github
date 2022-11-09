@@ -56,8 +56,8 @@ runs:
         SECRETS_CONTEXT: ${{ inputs.secrets }}
       run: |
         for key in $( echo $SECRETS_CONTEXT | jq -r "to_entries|map(.key)|.[]" ); do
-          echo "::add-mask::${key}"
           echo ${key}
+          # echo "::add-mask::${key}"
           # val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
           # echo "${key}=\"${val}\"" >> $GITHUB_ENV
         done
