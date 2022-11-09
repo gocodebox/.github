@@ -91,7 +91,7 @@ runs:
     - name: Add Deploy Key to SSH Agent
       uses: webfactory/ssh-agent@v0.6.0
       with:
-        ssh-private-key: ${{ secrets.LLMS_DEPLOY_KEY }}
+        ssh-private-key: $LLMS_DEPLOY_KEY
 
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
