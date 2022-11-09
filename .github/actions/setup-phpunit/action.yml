@@ -49,17 +49,6 @@ runs:
   using: "composite"
   steps:
 
-    # Add Deploy Key Secret (private key): allow cloning private repos.
-    #   A private repo which may be required for testing by another repo should
-    #   add the deploy key's public key as a deploy key on the private repo (the dependent).
-    - name: Add Deploy Key to SSH Agent
-      shell: bash
-      env:
-        PRIVATE_KEY: ${{ secrets.LLMS_DEPLOY_KEY }}
-      run: |
-        eval `ssh-agent -s`
-        ssh-add - <<< '$PRIVATE_KEY'
-
     # Load all available secrets into the $GITHUB_ENV
     - name: Secrets context to Environment variables
       shell: bash
@@ -96,13 +85,22 @@ runs:
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
         echo MYSQL_ROOT_PASSWORD=${{ inputs.db-pass }} >> $GITHUB_ENV
 
+    # Add Deploy Key Secret (private key): allow cloning private repos.
+    #   A private repo which may be required for testing by another repo should
+    #   add the deploy key's public key as a deploy key on the private repo (the dependent).
+    - name: Add Deploy Key to SSH Agent
+      shell: bash
+      run: |
+        eval `ssh-agent -s`
+        ssh-add - <<< '$LLMS_DEPLOY_KEY'
+
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
       shell: bash
       env:
         MATRIX_CONTEXT: ${{ toJSON( matrix ) }}
       run: |
-        SKIP=(WP PHP LLMS LLMS_DEPLOY_KEY allow-failure name-append)
+        SKIP=(WP PHP LLMS allow-failure name-append)
         for key in $( echo "$MATRIX_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
             match=0
             for skip_key in "${SKIP[@]}"; do
