@@ -89,10 +89,9 @@ runs:
     #   A private repo which may be required for testing by another repo should
     #   add the deploy key's public key as a deploy key on the private repo (the dependent).
     - name: Add Deploy Key to SSH Agent
-      shell: bash
-      run: |
-        eval `ssh-agent -s`
-        ssh-add - <<< '$LLMS_DEPLOY_KEY'
+      uses: webfactory/ssh-agent@v0.6.0
+      with:
+        ssh-private-key: ${{ secrets.LLMS_DEPLOY_KEY }}
 
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
