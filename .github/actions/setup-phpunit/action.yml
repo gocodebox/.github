@@ -92,7 +92,7 @@ runs:
       shell: bash
       run: |
         eval `ssh-agent -s`
-        ssh-add - <<< '"${LLMS_DEPLOY_KEY//$'%0A'/'\n'}"'
+        ssh-add - <<< "${LLMS_DEPLOY_KEY//$'%0A'/'\n'}"
 
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
