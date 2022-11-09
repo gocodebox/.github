@@ -59,7 +59,6 @@ runs:
           echo "::add-mask::${key}"
           val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
           val="${val//$'\n'/'%0A'}"
-          val="${val//$'\r'/'%0D'}"
           echo "$key=$val" >> $GITHUB_ENV
         done
 
@@ -90,9 +89,10 @@ runs:
     #   A private repo which may be required for testing by another repo should
     #   add the deploy key's public key as a deploy key on the private repo (the dependent).
     - name: Add Deploy Key to SSH Agent
-      uses: webfactory/ssh-agent@v0.6.0
-      with:
-        ssh-private-key: $LLMS_DEPLOY_KEY
+      shell: bash
+      run: |
+        eval `ssh-agent -s`
+        ssh-add - <<< '"${LLMS_DEPLOY_KEY//$'%0A'/'\n'}"'
 
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
