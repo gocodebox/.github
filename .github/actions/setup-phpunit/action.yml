@@ -55,11 +55,12 @@ runs:
       env:
         SECRETS_CONTEXT: ${{ inputs.secrets }}
       run: |
-        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(.key)|.[]" ); do
+        for key in $( echo $SECRETS_CONTEXT | jq -r "to_entries|map(.key)|.[]" ); do
           echo "::add-mask::${key}"
-        done
-        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
-          echo ${key} >> $GITHUB_ENV
+          if [ "LLMS_DEPLOY_KEY" != "${key}" ]; then
+            val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
+            echo "${key}=\"${val}\"" >> $GITHUB_ENV
+          fi
         done
 
     # Load environment variables from the specified .env file into the $GITHUB_ENV
