@@ -57,10 +57,8 @@ runs:
       run: |
         for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(.key)|.[]" ); do
           echo "::add-mask::${key}"
-        done
-        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
-          # echo ${key} >> $GITHUB_ENV
-          echo ${key}
+          val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
+          echo "${key}=\"${val}\"" >> $GITHUB_ENV
         done
 
     # Load environment variables from the specified .env file into the $GITHUB_ENV
