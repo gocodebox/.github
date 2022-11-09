@@ -55,11 +55,11 @@ runs:
       env:
         SECRETS_CONTEXT: ${{ inputs.secrets }}
       run: |
-        for key in $( echo $SECRETS_CONTEXT | jq -r "to_entries|map(.key)|.[]" ); do
+        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(.key)|.[]" ); do
           echo "::add-mask::${key}"
-          val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
-          val="${val//$'\n'/'%0A'}"
-          echo "$key=$val" >> $GITHUB_ENV
+        done
+        for key in $( echo "$SECRETS_CONTEXT" | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+          echo ${key} >> $GITHUB_ENV
         done
 
     # Load environment variables from the specified .env file into the $GITHUB_ENV
@@ -84,15 +84,6 @@ runs:
         echo WP_TESTS_VERSION=${{ inputs.wp-tests-version }} >> $GITHUB_ENV
         echo WP_TESTS_CACHE_VERSION=$( /bin/date -u "+%Y%m%d" ) >> $GITHUB_ENV
         echo MYSQL_ROOT_PASSWORD=${{ inputs.db-pass }} >> $GITHUB_ENV
-
-    # Add Deploy Key Secret (private key): allow cloning private repos.
-    #   A private repo which may be required for testing by another repo should
-    #   add the deploy key's public key as a deploy key on the private repo (the dependent).
-    - name: Add Deploy Key to SSH Agent
-      shell: bash
-      run: |
-        eval `ssh-agent -s`
-        ssh-add - <<< "${LLMS_DEPLOY_KEY//$'%0A'/'\n'}"
 
     # All extra matrix vars (excluding defaults in $SKIP var) are added to the environment.
     - name: Add extra matrix vars to environment
