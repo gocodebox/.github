@@ -41,6 +41,12 @@ inputs:
     description: "Add custom environment variables via a .env file"
     default: ".github/env"
 
+  # Keys.
+  deploy-key:
+    description: "Add SSH keys to be added to the container"
+    default: ""
+
+  # Secrets.
   secrets:
     description: "JSON object of secrets to be added to the $GITHUB_ENV"
     default: "{}"
@@ -105,6 +111,11 @@ runs:
               echo ${key} >> $GITHUB_ENV
             fi
         done
+    
+    # Add SSH Key.
+    - uses: webfactory/ssh-agent@v0.6.0
+      with:
+        ssh-private-key: ${{ inputs.deploy-key }}
 
     # Setup PHP
     - name: Setup PHP
