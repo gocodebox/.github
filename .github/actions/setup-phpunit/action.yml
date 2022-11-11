@@ -114,6 +114,7 @@ runs:
     
     # Add SSH Key.
     - uses: webfactory/ssh-agent@v0.6.0
+      if: ${{ inputs.deploy-key != '' }}
       with:
         ssh-private-key: ${{ inputs.deploy-key }}
 
