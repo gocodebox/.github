@@ -65,7 +65,7 @@ runs:
           echo "::add-mask::${key}"
           if [ "LLMS_DEPLOY_KEY" != "${key}" ]; then
             val=$( echo $SECRETS_CONTEXT | jq -r ".${key}" )
-            echo "${key}=\"${val}\"" >> $GITHUB_ENV
+            echo "${key}="${val}"" >> $GITHUB_ENV
           fi
         done
 
