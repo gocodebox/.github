@@ -178,12 +178,12 @@ runs:
       uses: actions/cache@v2
       with:
         path: tmp/tests/wordpress
-        key: wp-${{ inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v1
+        key: wp-${{ inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v2
     - name: Cache WP Tests Lib
       uses: actions/cache@v2
       with:
         path: tmp/tests/wordpress-tests-lib
-        key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v2
+        key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v3
     - name: Install WP Tests
       shell: bash
       run: composer run tests-install
