@@ -74,7 +74,6 @@ env:
     gocodebox/lifterlms-integration-twilio
     gocodebox/lifterlms-integration-woocommerce
     gocodebox/lifterlms-integration-wpforms
-    gocodebox/lifterlms-lite-lms-progress-tracker
     gocodebox/lifterlms-mailchimp
     gocodebox/lifterlms-pdfs
     gocodebox/lifterlms-private-areas
