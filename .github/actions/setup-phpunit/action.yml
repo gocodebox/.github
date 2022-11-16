@@ -51,6 +51,11 @@ inputs:
     description: "JSON object of secrets to be added to the $GITHUB_ENV"
     default: "{}"
 
+  # Cache Busting:
+  cache-suffix:
+    description: "A suffix to added to cache keys."
+    default: "v4"
+
 runs:
   using: "composite"
   steps:
@@ -141,10 +146,10 @@ runs:
       shell: bash
       run: echo "::set-output name=dir::$(composer config cache-files-dir)"
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}${{ inputs.cache-suffix }}
         restore-keys: ${{ runner.os }}-composer-
     - name: Install Composer dependencies
       shell: bash
@@ -175,15 +180,15 @@ runs:
 
     # Install WP Tests.
     - name: Cache WP Core Files
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: tmp/tests/wordpress
-        key: wp-${{ inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v2
+        key: wp-${{ inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}${{ inputs.cache-suffix }}
     - name: Cache WP Tests Lib
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: tmp/tests/wordpress-tests-lib
-        key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}-v3
+        key: wp-tests-lib-${{ env.WP_TESTS_VERSION || inputs.wp-version }}-${{ env.WP_TESTS_CACHE_VERSION }}${{ inputs.cache-suffix }}
     - name: Install WP Tests
       shell: bash
       run: composer run tests-install
