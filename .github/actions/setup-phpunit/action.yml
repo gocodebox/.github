@@ -174,9 +174,8 @@ runs:
       shell: bash
       run: |
         if [[ "6.0" == "${{ inputs.wp-version }}" || "5.9" == "${{ inputs.wp-version }}" || "5.8" == "${{ inputs.wp-version }}" || "5.7" == "${{ inputs.wp-version }}" || "5.6" == "${{ inputs.wp-version }}" ]]; then
-          $WP_TESTS_VERSION="6.0"
-          echo $WP_TESTS_VERSION >> $GITHUB_ENV
-          echo "Using WP Tests Lib Version: $WP_TESTS_VERSION"
+          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
+          echo "Using WP Tests Lib Version: 6.0"
         fi
 
     # Install WP Tests.
