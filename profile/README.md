@@ -1,3 +1,5 @@
+![LifterLMS: We build open source technology to democratize education in the digital classroom](https://github.com/gocodebox/.github/blob/trunk/profile/gocodebox-github-readme-banner.png)
+
 # We build open source technology to democratize education in the digital classroom.
 
 At the heart of our efforts here on Github is our [free LifterLMS core plugin](https://github.com/gocodebox/lifterlms).
