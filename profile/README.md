@@ -1,6 +1,6 @@
 # We build open source technology to democratize education in the digital classroom.
 
-At the heart of our efforts here on Github is our free LifterLMS core plugin.
+At the heart of our efforts here on Github is our [free LifterLMS core plugin](https://github.com/gocodebox/lifterlms).
 
 At LifterLMS, we put our users and our users’ users a the center of what we do. We provide software, support, content, and community for our users so that together we can lift up others through education. 
 
