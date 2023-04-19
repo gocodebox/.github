@@ -6,8 +6,6 @@ main:
     - chrisbadgett
     - eri-trabiccolo
     - manananomas
-    - nrherron92
-    - sekanderb
     - willmiddleton-lifterlms
   teams:
     success:
@@ -16,7 +14,6 @@ main:
       permission: pull
       members:
         - manananomas
-        - nrherron92
         - willmiddleton-lifterlms
     engineering:
       name: Engineering
@@ -30,7 +27,6 @@ main:
       permission: pull
       members:
         - chrisbadgett
-        - sekanderb
     admin:
       name: Admin
       description: 'The codeBOX company administrators'
