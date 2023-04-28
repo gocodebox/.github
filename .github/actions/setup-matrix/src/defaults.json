@@ -50,11 +50,6 @@
         "WP": "6.2",
         "LLMS": "dev",
         "allow-failure": true
-      },
-      {
-        "PHP": "8.1",
-        "WP": "6.3",
-        "allow-failure": true
       }
     ]
   }
