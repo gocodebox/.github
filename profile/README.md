@@ -6,7 +6,7 @@ At the heart of our efforts here on Github is our [free LifterLMS core plugin](h
 
 At LifterLMS, we put our users and our users’ users at the center of what we do. We provide software, support, content, and community for our users so that together we can lift up others through education. 
 
-LifterLMS launched to the public in Ocober of 2014.
+LifterLMS launched to the public in October of 2014.
 
 # Our Open Source Solutions
 
