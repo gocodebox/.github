@@ -4,7 +4,6 @@ Test E2E:
     - '6.1'
     - '6.0'
     - '5.9'
-    - '5.8'
   allow-failure:
     - false
 
@@ -18,7 +17,6 @@ Test PHPUnit:
     - '6.1'
     - '6.0'
     - '5.9'
-    - '5.8'
   PHP:
     # - '8.1' # There's still too many PHP 8.1 issues in WP and Action Scheduler.
     - '8.0'

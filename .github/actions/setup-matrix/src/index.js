@@ -1,5 +1,5 @@
 // Require modules.
-const 
+const
 	core = require( '@actions/core' ),
 	github = require( '@actions/github' ),
 	defaults = require( './defaults.json' ),
@@ -67,7 +67,6 @@ function loadMatrix( workflow ) {
 			}
 
 		}
-		
 
 	}
 
