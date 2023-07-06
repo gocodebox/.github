@@ -92,3 +92,8 @@
 - name: invalid
   color: '444444'
   description: This issue or PR is invalid
+- name: 'Pitch Candidate'
+  color: '444444'
+  description: This issue is a candidate for a Pitch
+  aliases:
+  - pitch-candidate  
