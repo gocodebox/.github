@@ -35,6 +35,9 @@
 - name: 'Status: Need Information'
   color: 007acc
   description: More information is required to proceed
+- name: 'Status: Needs Code'
+  color: 007acc
+  description: This issue needs code to be fixed
 - name: 'Status: Needs Documentation'
   color: 007acc
   description: The pull request requires documentation or changelog updates before
@@ -42,7 +45,7 @@
 - name: 'Status: Needs Tests'
   color: 007acc
   description: Tests need to be written for the PR
-
+  
 # Type.
 - name: 'Type: Bug'
   color: aa0000
