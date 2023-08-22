@@ -14119,7 +14119,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Test E2E":{"WP":["latest","6.1","6.0","5.9","5.8"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["6.2","6.1","6.0","5.9","5.8"],"PHP":["8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.0","WP":"6.2","LLMS":"dev","allow-failure":true}]}}');
+module.exports = JSON.parse('{"Test E2E":{"WP":["latest","6.2","6.1","6.0","5.9"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["6.3","6.2","6.1","6.0","5.9"],"PHP":["8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)"}]}}');
 
 /***/ }),
 
@@ -14285,7 +14285,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 // Require modules.
-const 
+const
 	core = __nccwpck_require__( 2186 ),
 	github = __nccwpck_require__( 5438 ),
 	defaults = __nccwpck_require__( 4658 ),
@@ -14353,7 +14353,6 @@ function loadMatrix( workflow ) {
 			}
 
 		}
-		
 
 	}
 

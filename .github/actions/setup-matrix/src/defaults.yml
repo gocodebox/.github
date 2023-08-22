@@ -1,6 +1,7 @@
 Test E2E:
   WP:
     - 'latest'
+    - '6.2'
     - '6.1'
     - '6.0'
     - '5.9'
@@ -13,12 +14,13 @@ Test E2E:
 
 Test PHPUnit:
   WP:
+    - '6.3'
     - '6.2'
     - '6.1'
     - '6.0'
     - '5.9'
   PHP:
-    # - '8.1' # There's still too many PHP 8.1 issues in WP and Action Scheduler.
+    - '8.1'
     - '8.0'
     - '7.4'
   LLMS:
@@ -33,18 +35,3 @@ Test PHPUnit:
       WP: 'nightly'
       allow-failure: true
     - name-append: ' (LLMS nightly)'
-      PHP: '8.0'
-      WP: '6.2'
-      LLMS: 'dev'
-      allow-failure: true
-
-  # exclude:
-    # These WP Versions don't work on PHP 8.1.
-    # - PHP: '8.1'
-    #   WP: '5.8'
-    # - PHP: '8.1'
-    #   WP: '5.7'
-    # - PHP: '8.1'
-    #   WP: '5.6'
-    # - PHP: '8.1'
-    #   WP: '5.5'

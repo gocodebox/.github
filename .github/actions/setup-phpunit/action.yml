@@ -31,7 +31,7 @@ inputs:
   # WordPress
   wp-version:
     description: "WordPress core version"
-    default: "5.8"
+    default: "5.9"
   wp-tests-version:
     description: "WordPress tests library version"
     default: false
