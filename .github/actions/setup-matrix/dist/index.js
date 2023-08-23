@@ -14119,7 +14119,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Test E2E":{"WP":["latest","6.2","6.1","6.0","5.9"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["6.3","6.2","6.1","6.0","5.9"],"PHP":["8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.1","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)"}]}}');
+module.exports = JSON.parse('{"Test E2E":{"WP":["latest","6.2","6.1","6.0","5.9"],"allow-failure":[false],"include":[{"WP":"nightly","allow-failure":true}]},"Test PHPUnit":{"WP":["6.3","6.2","6.1","6.0","5.9"],"PHP":["8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""],"include":[{"PHP":"8.2","WP":"nightly","allow-failure":true},{"name-append":" (LLMS nightly)","PHP":"8.2","WP":"6.3","LLMS":"dev","allow-failure":true}]}}');
 
 /***/ }),
 

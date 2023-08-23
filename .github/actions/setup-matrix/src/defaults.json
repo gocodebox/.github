@@ -41,12 +41,16 @@
     ],
     "include": [
       {
-        "PHP": "8.1",
+        "PHP": "8.2",
         "WP": "nightly",
         "allow-failure": true
       },
       {
-        "name-append": " (LLMS nightly)"
+        "name-append": " (LLMS nightly)",
+        "PHP": "8.2",
+        "WP": "6.3",
+        "LLMS": "dev",
+        "allow-failure": true
       }
     ]
   }
