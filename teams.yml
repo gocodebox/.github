@@ -15,18 +15,24 @@ main:
       members:
         - manananomas
         - willmiddleton-lifterlms
+        - dominiquemariano
+        - NADIA98AKTHER
     engineering:
       name: Engineering
       description: 'The LifterLMS development team'
       permission: push
-      members:
+      members:        
+        - ideadude        
+        - kimcoleman
         - eri-trabiccolo
+        - actuallyakash
     marketing:
       name: Marketing
       description: 'The LifterLMS marketing team'
       permission: pull
       members:
         - chrisbadgett
+        - kimcoleman
     admin:
       name: Admin
       description: 'The codeBOX company administrators'
