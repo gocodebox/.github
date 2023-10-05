@@ -81,6 +81,8 @@ env:
     gocodebox/lifterlms-social-learning
     gocodebox/lifterlms-stripe
     gocodebox/lifterlms-com-paypal-connect
+    gocodebox/lifterlms-private-site
+    gocodebox/lifterlms-course-cohorts
 
   # Utility workflows.
   UTIL_FILES: |
@@ -138,6 +140,8 @@ env:
     gocodebox/lifterlms-com-experiments
     gocodebox/lifterlms.com-rest-api
     gocodebox/lifterlms-com-support-desk
+    gocodebox/lifterlms-private-site
+    gocodebox/lifterlms-course-cohorts
 
 jobs:
 
