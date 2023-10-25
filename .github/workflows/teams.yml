@@ -7,9 +7,9 @@ on:
       - teams.yml
     branches:
       - trunk
-  schedule:
+#  schedule:
     # Every 24 hours.
-    - cron: '0 */24 * * *'
+#    - cron: '0 */24 * * *'
 
 jobs:
   main:
