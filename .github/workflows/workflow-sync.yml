@@ -83,7 +83,10 @@ env:
     gocodebox/lifterlms-com-paypal-connect
     gocodebox/lifterlms-private-site
     gocodebox/lifterlms-course-cohorts
-
+    gocodebox/lifterlms-labs
+    gocodebox/lifterlms-note-taking
+    gocodebox/lifterlms-private-site
+    
   # Utility workflows.
   UTIL_FILES: |
     .github/workflows/keep-alive.yml
