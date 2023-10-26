@@ -83,10 +83,14 @@ env:
     gocodebox/lifterlms-com-paypal-connect
     gocodebox/lifterlms-private-site
     gocodebox/lifterlms-course-cohorts
+
+  PHP_CS_ONLY_FILES: |
+    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
+  PHP_CS_ONLY_REPOS: |
     gocodebox/lifterlms-labs
     gocodebox/lifterlms-note-taking
     gocodebox/lifterlms-private-site
-    
+
   # Utility workflows.
   UTIL_FILES: |
     .github/workflows/keep-alive.yml
@@ -226,6 +230,21 @@ jobs:
           WORKFLOW_FILES: ${{ env.PHP_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "PHP Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
+
+  php-cs-only-worflow:
+    name: PHP CS Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.PHP_CS_ONLY_REPOS }}
+          WORKFLOW_FILES: ${{ env.PHP_CS_ONLY_FILES }}
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "PHP CS Only Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   util-files:
     name: Utility Files
