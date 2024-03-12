@@ -98,6 +98,7 @@ env:
     .github/workflow-templates/sync-branches.yml=.github/workflows/sync-branches.yml
   UTIL_REPOS: |
     gocodebox/lifterlms
+    gocodebox/lifterlms-advanced-coupons
     gocodebox/lifterlms-advanced-quizzes
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
@@ -118,6 +119,7 @@ env:
     gocodebox/lifterlms-labs
     gocodebox/lifterlms-lite-lms-progress-tracker
     gocodebox/lifterlms-mailchimp
+    gocodebox/lifterlms-note-taking
     gocodebox/lifterlms-pdfs
     gocodebox/lifterlms-private-areas
     gocodebox/lifterlms-rest
@@ -127,6 +129,7 @@ env:
     gocodebox/lifterlms-launchpad
     gocodebox/lifterlms-launchpad-child
     gocodebox/sky-pilot
+    gocodebox/aircraft
     gocodebox/lifterlms-zapier
     gocodebox/llms-api-node
     gocodebox/private-issues
