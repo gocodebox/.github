@@ -37,7 +37,6 @@ env:
   E2E_TEST_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
-    gocodebox/lifterlms-blocks
     gocodebox/lifterlms-groups
 
   ES_LINT_REPOS: |
