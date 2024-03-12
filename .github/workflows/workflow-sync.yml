@@ -56,6 +56,7 @@ env:
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
   PHP_REPOS: |
     gocodebox/lifterlms
+    gocodebox/lifterlms-advanced-coupons
     gocodebox/lifterlms-advanced-quizzes
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
@@ -80,6 +81,7 @@ env:
     gocodebox/lifterlms-com-paypal-connect
     gocodebox/lifterlms-private-site
     gocodebox/lifterlms-course-cohorts
+    gocodebox/aircraft
 
   PHP_CS_ONLY_FILES: |
     .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
