@@ -6,7 +6,7 @@ inputs:
   # PHP (shivammathur/setup-php@v2)
   php-version:
     description: "PHP version, passed directly to shivammathur/setup-php@v2"
-    default: "8.0"
+    default: "8.2"
   coverage:
     description: "Coverage engine, passed directly to shivammathur/setup-php@v2"
     default: "none" # "xdebug" to run coverage phpunit test coverage.
@@ -31,7 +31,7 @@ inputs:
   # WordPress
   wp-version:
     description: "WordPress core version"
-    default: "5.9"
+    default: "latest"
   wp-tests-version:
     description: "WordPress tests library version"
     default: false
@@ -154,29 +154,6 @@ runs:
     - name: Install Composer dependencies
       shell: bash
       run: composer update
-
-    # Special Conditions for WP 5.4
-    #   + Remove composer.lock to allow dependency grades during rollback.
-    #   + Rollback PHPUnit to ^7.5.
-    #   + Unset the WP_TESTS_VERSION env var so that the 5.4 *branch* (not tag) will be used.
-    - name: Handle Special Conditions for WP 5.4
-      shell: bash
-      run: |
-        if [[ "5.4" == "${{ inputs.wp-version }}" ]]; then
-          [ -f composer.lock ] && rm composer.lock
-          composer require phpunit/phpunit:^7.5.20 -W
-          echo WP_TESTS_VERSION=false >> $GITHUB_ENV
-        fi
-
-    # Special Conditions for WP Versions 6.0 & lowers where we have to use a later tests lib version.
-    # Changes to the test lib on 6.1 necessitate this change to be made.
-    - name: Handle Special Conditions for WP Tests Lib
-      shell: bash
-      run: |
-        if [[ "6.0" == "${{ inputs.wp-version }}" || "5.9" == "${{ inputs.wp-version }}" || "5.8" == "${{ inputs.wp-version }}" || "5.7" == "${{ inputs.wp-version }}" || "5.6" == "${{ inputs.wp-version }}" ]]; then
-          echo WP_TESTS_VERSION="6.0" >> $GITHUB_ENV
-          echo "Using WP Tests Lib Version: 6.0"
-        fi
 
     # Install WP Tests.
     - name: Cache WP Core Files
