@@ -13,6 +13,7 @@ Test E2E:
 
 Test PHPUnit:
   WP:
+    - 'latest'
     - '6.4'
     - '6.3'
     - '6.2'
