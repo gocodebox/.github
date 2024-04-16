@@ -13,7 +13,6 @@ on:
       - .github/workflow-templates/test-js-unit.yml
 
       # PHP Files.
-      - .github/workflow-templates/coding-standards.yml
       - .github/workflow-templates/test-phpunit.yml
 
       # Utils.
@@ -31,7 +30,6 @@ env:
   DRY_RUN: false
 
   CLI_FILES: |
-    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
 
   E2E_TEST_REPOS: |
@@ -52,7 +50,6 @@ env:
     gocodebox/lifterlms-gateway-paypal
 
   PHP_FILES: |
-    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
   PHP_REPOS: |
     gocodebox/lifterlms
@@ -83,8 +80,6 @@ env:
     gocodebox/lifterlms-course-cohorts
     gocodebox/aircraft
 
-  PHP_CS_ONLY_FILES: |
-    .github/workflow-templates/coding-standards.yml=.github/workflows/coding-standards.yml
   PHP_CS_ONLY_REPOS: |
     gocodebox/lifterlms-labs
     gocodebox/lifterlms-note-taking
@@ -232,21 +227,6 @@ jobs:
           WORKFLOW_FILES: ${{ env.PHP_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "PHP Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
-
-  php-cs-only-worflow:
-    name: PHP CS Files
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Sync workflow files
-        uses: varunsridharan/action-github-workflow-sync@main
-        with:
-          DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.PHP_CS_ONLY_REPOS }}
-          WORKFLOW_FILES: ${{ env.PHP_CS_ONLY_FILES }}
-          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
-          COMMIT_MESSAGE: "PHP CS Only Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   util-files:
     name: Utility Files
