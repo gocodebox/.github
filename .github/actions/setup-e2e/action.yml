@@ -59,7 +59,7 @@ runs:
         cache: 'npm'
     - name: Install Node dependencies
       shell: bash
-      run: npm ci
+      run: npm ci && npm run build
 
     # Docker.
     - name: Login to Docker Hub
