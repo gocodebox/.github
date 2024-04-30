@@ -129,6 +129,7 @@ runs:
       with:
         php-version: ${{ inputs.php-version }}
         coverage: ${{ inputs.coverage }}
+        tools: wp,composer
 
     # Setup MySQL
     - name: Setup MySql
