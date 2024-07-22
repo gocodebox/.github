@@ -1,6 +1,8 @@
 Test E2E:
   WP:
     - 'latest'
+    - '6.6'
+    - '6.5'
     - '6.4'
     - '6.3'
     - '6.2'
@@ -14,6 +16,8 @@ Test E2E:
 Test PHPUnit:
   WP:
     - 'latest'
+    - '6.6'
+    - '6.5'
     - '6.4'
     - '6.3'
     - '6.2'
@@ -32,9 +36,4 @@ Test PHPUnit:
   include:
     - PHP: '8.2'
       WP: 'nightly'
-      allow-failure: true
-    - name-append: ' (LLMS nightly)'
-      PHP: '8.2'
-      WP: '6.3'
-      LLMS: 'dev'
       allow-failure: true
