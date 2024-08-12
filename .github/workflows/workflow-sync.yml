@@ -33,7 +33,6 @@ env:
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
 
   E2E_TEST_REPOS: |
-    gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-groups
 
