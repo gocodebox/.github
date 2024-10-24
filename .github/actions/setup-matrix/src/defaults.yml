@@ -9,10 +9,6 @@ Test E2E:
   allow-failure:
     - false
 
-  include:
-    - WP: 'nightly'
-      allow-failure: true
-
 Test PHPUnit:
   WP:
     - 'latest'
@@ -32,8 +28,3 @@ Test PHPUnit:
     - false
   name-append:
     - ''
-
-  include:
-    - PHP: '8.2'
-      WP: 'nightly'
-      allow-failure: true

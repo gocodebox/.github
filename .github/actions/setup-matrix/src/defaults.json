@@ -10,12 +10,6 @@
     ],
     "allow-failure": [
       false
-    ],
-    "include": [
-      {
-        "WP": "nightly",
-        "allow-failure": true
-      }
     ]
   },
   "Test PHPUnit": {
@@ -41,13 +35,6 @@
     ],
     "name-append": [
       ""
-    ],
-    "include": [
-      {
-        "PHP": "8.2",
-        "WP": "nightly",
-        "allow-failure": true
-      }
     ]
   }
 }
