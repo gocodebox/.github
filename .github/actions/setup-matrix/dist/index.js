@@ -14119,7 +14119,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"Test E2E":{"WP":["latest","6.6","6.5","6.4","6.3","6.2"],"allow-failure":[false]},"Test PHPUnit":{"WP":["latest","6.6","6.5","6.4","6.3","6.2"],"PHP":["8.2","8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""]}}');
+module.exports = JSON.parse('{"Test E2E":{"WP":["6.7","6.6","6.5","6.4","6.3","6.2"],"allow-failure":[false]},"Test PHPUnit":{"WP":["6.7","6.6","6.5","6.4","6.3","6.2"],"PHP":["8.2","8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""]}}');
 
 /***/ }),
 
