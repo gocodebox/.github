@@ -1,9 +1,7 @@
 {
   "Test E2E": {
     "WP": [
-      "6.8",
-      "6.7",
-      "6.6"
+      "6.8"
     ],
     "allow-failure": [
       false
