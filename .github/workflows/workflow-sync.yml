@@ -52,6 +52,7 @@ env:
   PHP_FILES: |
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
   PHP_REPOS: |
+    gocodebox/banner-notifications
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-coupons
     gocodebox/lifterlms-advanced-quizzes
