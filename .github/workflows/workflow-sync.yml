@@ -59,6 +59,7 @@ env:
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
     gocodebox/lifterlms-blocks
+    gocodebox/lifterlms-continuing-education
     gocodebox/lifterlms-convertkit
     gocodebox/lifterlms-custom-fields
     gocodebox/lifterlms-gateway-authorize-net
@@ -99,6 +100,7 @@ env:
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
     gocodebox/lifterlms-blocks
+    gocodebox/lifterlms-continuing-education
     gocodebox/lifterlms-convertkit
     gocodebox/lifterlms-cli
     gocodebox/lifterlms-custom-fields
