@@ -61,6 +61,7 @@ env:
     gocodebox/lifterlms-blocks
     gocodebox/lifterlms-convertkit
     gocodebox/lifterlms-custom-fields
+    gocodebox/lifterlms-events
     gocodebox/lifterlms-gateway-authorize-net
     gocodebox/lifterlms-gateway-paypal
     gocodebox/lifterlms-groups
