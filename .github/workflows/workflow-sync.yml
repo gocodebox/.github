@@ -3,9 +3,6 @@ name: Sync Organization Files
 on:
   push:
     paths:
-      # E2E Test File.
-      - .github/workflow-templates/test-e2e.yml
-
       # PHP Files.
       - .github/workflow-templates/test-phpunit.yml
 
@@ -25,11 +22,6 @@ env:
 
   CLI_FILES: |
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
-
-  E2E_TEST_REPOS: |
-    gocodebox/lifterlms
-    gocodebox/lifterlms-advanced-videos
-    gocodebox/lifterlms-groups
 
   PHP_FILES: |
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
@@ -149,22 +141,6 @@ jobs:
           WORKFLOW_FILES: ${{ env.CLI_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "PHPCS & PHP Testing Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
-
-  e2e-test:
-    name: E2E Test File
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Sync workflow files
-        uses: varunsridharan/action-github-workflow-sync@main
-        with:
-          DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: ${{ env.E2E_TEST_REPOS }}
-          WORKFLOW_FILES: |
-            .github/workflow-templates/test-e2e.yml=.github/workflows/test-e2e.yml
-          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
-          COMMIT_MESSAGE: "E2E Test Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   php-workflows:
     name: PHP Files
