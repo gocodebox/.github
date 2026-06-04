@@ -6,5 +6,5 @@ outputs:
     description: 'Outputs the generated matrix for workflow'
 
 runs:
-  using: 'node12'
+  using: 'node24'
   main: 'dist/index.js'
