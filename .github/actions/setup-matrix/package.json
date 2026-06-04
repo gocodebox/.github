@@ -6,7 +6,7 @@
   "author": "Team LifterLMS <team@lifterlms.com>",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.9.1",
+    "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "js-yaml": "^4.1.1"
   },
