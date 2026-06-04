@@ -1,7 +1,7 @@
 {
   "Test E2E": {
     "WP": [
-      "6.8"
+      "7.0"
     ],
     "allow-failure": [
       false
@@ -9,7 +9,7 @@
   },
   "Test PHPUnit": {
     "WP": [
-      "6.8"
+      "7.0"
     ],
     "PHP": [
       "8.3",
