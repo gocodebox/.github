@@ -108,6 +108,7 @@ env:
     gocodebox/lifterlms-virtual-classrooms
     gocodebox/lifterlms-launchpad
     gocodebox/lifterlms-launchpad-child
+    gocodebox/pushpress
     gocodebox/sky-pilot
     gocodebox/aircraft
     gocodebox/lifterlms-zapier
