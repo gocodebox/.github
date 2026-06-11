@@ -83,6 +83,7 @@ env:
     gocodebox/lifterlms-blocks
     gocodebox/lifterlms-continuing-education
     gocodebox/lifterlms-convertkit
+    gocodebox/lifterlms-car
     gocodebox/lifterlms-cli
     gocodebox/lifterlms-custom-fields
     gocodebox/lifterlms-events
