@@ -1,44 +1,72 @@
 ###
 #
-# This Dependabot config is the source of truth that gets deployed into every org repository via the
-# "Sync Organization Files" workflow. It is also active for this (.github) repository.
+# E2E Tests using Playwright.
 #
-# Direct edits to the synced copy in other repos are at risk of being overwritten by the next sync.
-# All edits should be made here.
+# This workflow can be copied to other repositories via the common gocodebox/.github repo.
 #
-# Security updates only. "open-pull-requests-limit: 0" disables routine version-update PRs for the
-# ecosystem; Dependabot still raises pull requests for security vulnerabilities. The "applies-to:
-# security-updates" group batches all of an ecosystem's security fixes into a single pull request,
-# avoiding the lockfile rebase cascade you get when every dependency opens its own PR.
-#
-# Requires "Dependabot alerts" and "Dependabot security updates" to be enabled (org/repo security
-# settings). github-actions is intentionally omitted: action versions are managed centrally and
-# synced from this repo, not bumped per-repo by Dependabot.
-#
-# @see Sync workflow {@link https://github.com/gocodebox/.github/actions/workflows/workflow-sync.yml}
-# @see Source file {@link https://github.com/gocodebox/.github/blob/trunk/.github/dependabot.yml}
+# Requires:
+#   - .wp-env.json in the repo root
+#   - playwright.config.js in the repo root
 #
 ###
-version: 2
-updates:
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 0
-    groups:
-      composer:
-        applies-to: security-updates
-        patterns:
-          - "*"
+name: Test E2E (Playwright)
 
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 0
-    groups:
-      npm:
-        applies-to: security-updates
-        patterns:
-          - "*"
+on:
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ 'pull_request' == github.event_name && github.head_ref || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+          tools: wp
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.15.0'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Start wp-env
+        run: npx wp-env start
+
+      - name: Bootstrap E2E test data
+        run: bash tests/e2e/bin/setup-env.sh
+
+      - name: Run Playwright tests
+        run: npx wp-scripts test-playwright
+
+      - name: Upload artifacts on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            artifacts/
+          retention-days: 7
