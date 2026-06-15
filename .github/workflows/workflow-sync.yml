@@ -9,6 +9,9 @@ on:
       # E2E Tests with Playwright
       - .github/workflow-templates/test-e2e-playwright.yml
 
+      # Dependabot config.
+      - .github/dependabot.yml
+
       # Utils.
       - .github/workflows/keep-alive.yml
       - .github/workflows/project-automation.yml
@@ -67,6 +70,10 @@ env:
     gocodebox/lifterlms-labs
     gocodebox/lifterlms-note-taking
     gocodebox/lifterlms-private-site
+
+  # Dependabot config. Synced to .github/dependabot.yml in each repo (reuses UTIL_REPOS below).
+  DEPENDABOT_FILES: |
+    .github/dependabot.yml=.github/dependabot.yml
 
   # Utility workflows.
   UTIL_FILES: |
@@ -197,3 +204,18 @@ jobs:
           WORKFLOW_FILES: ${{ env.UTIL_FILES }}
           GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
           COMMIT_MESSAGE: "Utility File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
+
+  dependabot-config:
+    name: Dependabot Config
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Sync workflow files
+        uses: varunsridharan/action-github-workflow-sync@main
+        with:
+          DRY_RUN: ${{ env.DRY_RUN }}
+          REPOSITORIES: ${{ env.UTIL_REPOS }}
+          WORKFLOW_FILES: ${{ env.DEPENDABOT_FILES }}
+          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
+          COMMIT_MESSAGE: "Dependabot Config Sync [Runner ID: $GITHUB_RUN_NUMBER]"
