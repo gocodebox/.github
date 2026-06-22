@@ -33,6 +33,7 @@ env:
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-groups
+    gocodebox/lifterlms-private-areas
 
   PHP_FILES: |
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
