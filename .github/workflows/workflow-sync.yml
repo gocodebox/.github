@@ -108,8 +108,8 @@ env:
     gocodebox/lifterlms-labs
     gocodebox/lifterlms-lite-lms-progress-tracker
     gocodebox/lifterlms-mailchimp
+    gocodebox/lifterlms-name-your-price
     gocodebox/lifterlms-note-taking
-    gocodebox/llifterlms-name-your-price
     gocodebox/lifterlms-pdfs
     gocodebox/lifterlms-private-areas
     gocodebox/lifterlms-rest
