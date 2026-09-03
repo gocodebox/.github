@@ -35905,7 +35905,7 @@ module.exports = parseParams
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"Test E2E":{"WP":["7.0"],"allow-failure":[false]},"Test PHPUnit":{"WP":["7.0"],"PHP":["8.3","8.2","8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"Test E2E":{"WP":["7.1"],"allow-failure":[false]},"Test PHPUnit":{"WP":["7.1"],"PHP":["8.3","8.2","8.1","8.0","7.4"],"LLMS":[""],"allow-failure":[false],"name-append":[""]}}');
 
 /***/ })
 

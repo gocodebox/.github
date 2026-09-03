@@ -26,9 +26,6 @@ on:
 env:
   DRY_RUN: false
 
-  CLI_FILES: |
-    .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
-
   E2E_TEST_REPOS: |
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
@@ -38,20 +35,17 @@ env:
   PHP_FILES: |
     .github/workflow-templates/test-phpunit.yml=.github/workflows/test-phpunit.yml
   PHP_REPOS: |
-    gocodebox/banner-notifications
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-coupons
     gocodebox/lifterlms-advanced-quizzes
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
-    gocodebox/lifterlms-blocks
     gocodebox/lifterlms-continuing-education
     gocodebox/lifterlms-convertkit
     gocodebox/lifterlms-custom-fields
     gocodebox/lifterlms-events
     gocodebox/lifterlms-gateway-authorize-net
     gocodebox/lifterlms-groups
-    gocodebox/lifterlms-helper
     gocodebox/lifterlms-integration-ninja-forms
     gocodebox/lifterlms-integration-twilio
     gocodebox/lifterlms-integration-woocommerce
@@ -59,7 +53,6 @@ env:
     gocodebox/lifterlms-mailchimp
     gocodebox/lifterlms-pdfs
     gocodebox/lifterlms-private-areas
-    gocodebox/lifterlms-rest
     gocodebox/lifterlms-social-learning
     gocodebox/lifterlms-stripe
     gocodebox/lifterlms-com-paypal-connect
@@ -88,17 +81,14 @@ env:
     gocodebox/lifterlms-advanced-quizzes
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-assignments
-    gocodebox/lifterlms-blocks
     gocodebox/lifterlms-continuing-education
     gocodebox/lifterlms-convertkit
     gocodebox/lifterlms-car
-    gocodebox/lifterlms-cli
     gocodebox/lifterlms-custom-fields
     gocodebox/lifterlms-events
     gocodebox/lifterlms-gateway-authorize-net
     gocodebox/lifterlms-gateway-paypal
     gocodebox/lifterlms-groups
-    gocodebox/lifterlms-helper
     gocodebox/lifterlms-integration-formidable-forms
     gocodebox/lifterlms-integration-gravity-forms
     gocodebox/lifterlms-integration-ninja-forms
@@ -112,7 +102,6 @@ env:
     gocodebox/lifterlms-note-taking
     gocodebox/lifterlms-pdfs
     gocodebox/lifterlms-private-areas
-    gocodebox/lifterlms-rest
     gocodebox/lifterlms-social-learning
     gocodebox/lifterlms-stripe
     gocodebox/lifterlms-virtual-classrooms
@@ -144,22 +133,6 @@ env:
     gocodebox/lifterlms-course-cohorts
 
 jobs:
-
-  cli-files:
-    name: LLMS-CLI Test Files
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Sync workflow files
-        uses: varunsridharan/action-github-workflow-sync@main
-        with:
-          DRY_RUN: ${{ env.DRY_RUN }}
-          REPOSITORIES: |
-            gocodebox/lifterlms-cli
-          WORKFLOW_FILES: ${{ env.CLI_FILES }}
-          GITHUB_TOKEN: ${{ secrets.ORG_WORKFLOWS }}
-          COMMIT_MESSAGE: "PHPCS & PHP Testing Workflow File Sync [Runner ID: $GITHUB_RUN_NUMBER]"
 
   e2e-test:
     name: E2E Test File
