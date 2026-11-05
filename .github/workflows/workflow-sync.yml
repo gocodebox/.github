@@ -30,6 +30,9 @@ env:
     gocodebox/lifterlms
     gocodebox/lifterlms-advanced-videos
     gocodebox/lifterlms-groups
+    gocodebox/lifterlms-integration-ninja-forms
+    gocodebox/lifterlms-integration-twilio
+    gocodebox/lifterlms-integration-wpforms
     gocodebox/lifterlms-private-areas
     gocodebox/lifterlms-social-learning
 
