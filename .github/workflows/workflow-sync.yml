@@ -15,6 +15,7 @@ on:
       # Utils.
       - .github/workflows/keep-alive.yml
       - .github/workflows/project-automation.yml
+      - .github/workflows/dependabot-dedupe.yml
       - .github/workflow-templates/sync-branches.yml
 
       # When this file is edited.
@@ -73,6 +74,7 @@ env:
   UTIL_FILES: |
     .github/workflows/keep-alive.yml
     .github/workflows/project-automation.yml
+    .github/workflows/dependabot-dedupe.yml
     .github/workflow-templates/.editorconfig=.editorconfig
     .github/workflow-templates/sync-branches.yml=.github/workflows/sync-branches.yml
   UTIL_REPOS: |
